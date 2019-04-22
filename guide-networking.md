@@ -5,7 +5,7 @@ To set up bridged networking for the macOS VM, use one of the following methods:
 
 ## Using /etc/network/interfaces
 
-It is possible to create the bridge and tun/tap interfaces using adding the following lines to `/etc/network/interfaces`. Replace `DEVICENAME` with your ethernet card's device name, and `MYUSERNAME` with the user that is starting the VM.
+It is possible to create the bridge and tun/tap interfaces by adding the following lines to `/etc/network/interfaces`. Replace `DEVICENAME` with your ethernet card's device name, and `MYUSERNAME` with the user that is starting the VM.
 
 ```
 auto br0
