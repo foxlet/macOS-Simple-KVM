@@ -8,6 +8,7 @@ import os
 import errno
 import click
 import requests
+import sys
 
 __author__ = "Foxlet"
 __copyright__ = "Copyright 2018, FurCode Project"
@@ -66,7 +67,10 @@ class SoftwareService:
         return catalog_raw.text.encode('UTF-8')
 
     def getosinstall(self):
-        root = plistlib.readPlistFromString(self.catalog_data)
+        if (sys.version_info > (3, 0)):
+            root = plistlib.readPlistFromBytes(self.catalog_data)
+        else:
+            root = plistlib.readPlistFromString(self.catalog_data)
         products = root['Products']
         for product in products:
                 if 'ExtendedMetaInfo' in products[product]:
@@ -79,7 +83,10 @@ class SoftwareService:
 
 class MacOSProduct:
     def __init__(self, catalog, product_id):
-        root = plistlib.readPlistFromString(catalog)
+        if (sys.version_info > (3, 0)):
+            root = plistlib.readPlistFromBytes(catalog)
+        else:
+            root = plistlib.readPlistFromString(catalog)
         products = root['Products']
         self.date = root['IndexDate']
         self.product = products[product_id]
@@ -107,13 +114,13 @@ def fetchmacos(output_dir="BaseSystem/", catalog_id="DeveloperSeed", product_id=
         product_id = remote.getosinstall()
     else:
         if product_id == "":
-            print "You must provide a Product ID (or pass the -l flag) to continue."
+            print("You must provide a Product ID (or pass the -l flag) to continue.")
             exit(1)
         product_id = product_id
     try:
         update = MacOSProduct(catalog, product_id)
     except KeyError:
-        print "Product ID {} could not be found.".format(product_id)
+        print("Product ID {} could not be found.".format(product_id))
         exit(1)
     logging.info("Selected macOS Product: {}".format(product_id))
 
