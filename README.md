@@ -3,6 +3,9 @@ Documentation to set up a simple Q35 VM based in QEMU, accelerated by KVM.
 
 Better instructions will be available in the future, but for now, here's how to get started:
 
+## Dependencies
+You need to have `qemu`, `python` and the KVM extensions installed for this project.
+
 ## Step 1
 Run `jumpstart.sh` to get some basic installation media for macOS.
 
