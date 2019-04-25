@@ -1,5 +1,6 @@
 #!/bin/bash
 
+OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VMDIR=$PWD
 OVMF=$VMDIR/firmware
 #export QEMU_AUDIO_DRV=pa
@@ -11,7 +12,7 @@ qemu-system-x86_64 \
     -machine q35,accel=kvm \
     -smp 4,cores=2 \
     -cpu Penryn,vendor=GenuineIntel,kvm=on,+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc \
-    -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
+    -device isa-applesmc,osk="$OSK" \
     -smbios type=2 \
     -drive if=pflash,format=raw,readonly,file=$OVMF/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file=$OVMF/OVMF_VARS-1024x768.fd \
