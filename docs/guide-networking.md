@@ -44,3 +44,10 @@ nmcli connection add type tun \
 nmcli connection mod mytap connection.slave-type bridge \
     connection.master br1
 ```
+
+## Attach Bridge to QEMU
+Once you have set up the bridge and tun/tap on the host, you'll have to add the following line to `basic.sh`, replacing `-netdev user,id=net0`. Change `tap0` to your corresponding device name.
+
+```
+    -netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
+```

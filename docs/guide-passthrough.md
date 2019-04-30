@@ -38,7 +38,9 @@ iommu=pt intel_iommu=on vfio-pci.ids=1002:66af,1002:ab20
 To do this permanently, you can add it to your bootloader. If you're using GRUB, for example, edit `/etc/default/grub` and add the previous lines to the `GRUB_CMDLINE_LINUX_DEFAULT` section, then run `sudo update-grub` and reboot.
 
 ## Attach card to QEMU
-You will need to attach the cards using the BDF IDs for the audio and video controller. The following example shows the config for a card with two devices. The romfile parameter is optional.
+You will need to attach the cards using the BDF IDs for the audio and video controller. The following example shows the config for a card with two devices. The romfile parameter is optional. 
+
+**Note:** You may need to run `basic.sh` as sudo for the card to work.
 
 ```
     -vga none \
