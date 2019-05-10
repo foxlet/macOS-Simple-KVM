@@ -5,7 +5,8 @@ Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 You'll need a Linux system with `qemu`, `python` and the KVM extensions installed for this project. A Mac is **not** required.
 
 ## Step 1
-Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses High Sierra, but you can upgrade to Mojave later.
+Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses High Sierra, but you can upgrade to Mojave later.<br>
+This step is unnecessary if you already have a BaseSystem.dmg or BaseSystem.img file. If you have a BaseSystem.dmg file, you will to convert it with the dmg2img tool.
 
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
