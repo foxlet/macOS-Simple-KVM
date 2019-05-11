@@ -1,6 +1,8 @@
 # macOS-Simple-KVM
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 
+By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others.
+
 ## Getting Started
 You'll need a Linux system with `qemu`, `python` and the KVM extensions installed for this project. A Mac is **not** required.
 

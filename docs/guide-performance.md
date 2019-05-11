@@ -13,12 +13,12 @@ Increase this as needed (limited to the real amount of memory in your machine).
 ```
 
 ## Cores
-The default configuration enables 4 threads, each with 2 cores.
+The default configuration enables 4 threads, divided into CPUs with 2 cores each.
 ```
     -smp 4,cores=2 \
 ```
 
-The following example describes all possible topology configurations:
+The following example describes all possible topology flags:
 ```
     -smp cores=4,threads=4,sockets=1 \
 ```
