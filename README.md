@@ -7,8 +7,8 @@ By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others.
 You'll need a Linux system with `qemu`, `python` and the KVM extensions installed for this project. A Mac is **not** required.
 
 ## Step 1
-Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses High Sierra, but you can upgrade to Mojave later.<br>
-This step is unnecessary if you already have a BaseSystem.dmg or BaseSystem.img file. If you have a BaseSystem.dmg file, you will to convert it with the dmg2img tool.
+Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses High Sierra, but you can upgrade to Mojave later.
+> Note: You can skip this if you already have `BaseSystem.img` downloaded. If you have `BaseSystem.dmg`, you will need to convert it with the `dmg2img` tool.
 
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
