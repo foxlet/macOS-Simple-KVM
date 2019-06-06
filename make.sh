@@ -7,16 +7,16 @@ VMDIR=$PWD
 OUT="template.xml"
 
 print_usage() {
-  echo
-  echo "Usage: $0"
-  echo
-  echo " -a, --add   Add XML to virsh (uses sudo)."
-  echo
+    echo
+    echo "Usage: $0"
+    echo
+    echo " -a, --add   Add XML to virsh (uses sudo)."
+    echo
 }
 
 error() {
-  local error_message="$@"
-  echo "${error_message}" 1>&2;
+    local error_message="$@"
+    echo "${error_message}" 1>&2;
 }
 
 generate(){
