@@ -11,9 +11,9 @@ import requests
 import sys
 
 __author__ = "Foxlet"
-__copyright__ = "Copyright 2018, FurCode Project"
+__copyright__ = "Copyright 2019, FurCode Project"
 __license__ = "GPLv3"
-__version__ = "1.2"
+__version__ = "1.3"
 
 logging.basicConfig(format='%(asctime)-15s %(message)s', level=logging.INFO)
 logger = logging.getLogger('webactivity')
@@ -50,11 +50,13 @@ class Filesystem:
 
 
 class SoftwareService:
-    # macOS 10.14 ships in 4 different catalogs from SoftwareScan
+    # macOS 10.15 is available in 4 different catalogs from SoftwareScan
     catalogs = {"CustomerSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15customerseed-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
                 "DeveloperSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15seed-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
                 "PublicSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15beta-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
-                "PublicRelease":"https://swscan.apple.com/content/catalogs/others/index-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog"}
+                "PublicRelease":"https://swscan.apple.com/content/catalogs/others/index-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
+                "PublicRelease14":"https://swscan.apple.com/content/catalogs/others/index-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
+                "PublicRelease13":"https://swscan.apple.com/content/catalogs/others/index-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog"}
 
     def __init__(self, catalog_id):
         self.catalog_url = self.catalogs.get(catalog_id, self.catalogs["PublicRelease"])
@@ -67,37 +69,41 @@ class SoftwareService:
         return catalog_raw.text.encode('UTF-8')
 
     def getosinstall(self):
-        if (sys.version_info > (3, 0)):
-            root = plistlib.readPlistFromBytes(self.catalog_data)
+        # Load catalogs based on Py3/2 lib
+        if sys.version_info > (3, 0):
+            root = plistlib.loads(self.catalog_data)
         else:
             root = plistlib.readPlistFromString(self.catalog_data)
+
+        # Iterate to find valid OSInstall packages
+        ospackages = []
         products = root['Products']
         for product in products:
-                if 'ExtendedMetaInfo' in products[product]:
-                    IAMetaInfo = products[product]['ExtendedMetaInfo']
-                    if 'InstallAssistantPackageIdentifiers' in IAMetaInfo:
-                        IAPackageID = IAMetaInfo['InstallAssistantPackageIdentifiers']
-                        if IAPackageID['OSInstall'] == 'com.apple.mpkg.OSInstall':
-                            return product
+            if products.get(product, {}).get('ExtendedMetaInfo', {}).get('InstallAssistantPackageIdentifiers', {}).get('OSInstall', {}) == 'com.apple.mpkg.OSInstall':
+                ospackages.append(product)
+        return ospackages
 
 
 class MacOSProduct:
     def __init__(self, catalog, product_id):
-        if (sys.version_info > (3, 0)):
-            root = plistlib.readPlistFromBytes(catalog)
+        if sys.version_info > (3, 0):
+            root = plistlib.loads(catalog)
         else:
             root = plistlib.readPlistFromString(catalog)
         products = root['Products']
         self.date = root['IndexDate']
         self.product = products[product_id]
 
-    def fetchpackages(self, path):
+    def fetchpackages(self, path, keyword=None):
         Filesystem.check_directory(path)
         packages = self.product['Packages']
-        for item in packages:
-            if "BaseSystem" in item.get("URL"):
+        if keyword:
+            for item in packages:
+                if keyword in item.get("URL"):
+                    Filesystem.download_file(item.get("URL"), item.get("Size"), path)
+        else:
+            for item in packages:
                 Filesystem.download_file(item.get("URL"), item.get("Size"), path)
-
 
 @click.command()
 @click.option('-o', '--output-dir', default="BaseSystem/", help="Target directory for package output.")
@@ -109,23 +115,24 @@ def fetchmacos(output_dir="BaseSystem/", catalog_id="PublicRelease", product_id=
     remote = SoftwareService(catalog_id)
     catalog = remote.getcatalog()
 
-    # Get the current macOS package
+    # If latest is used, find the latest OSInstall package
     if latest:
-        product_id = remote.getosinstall()
+        product_id = remote.getosinstall()[-1]
     else:
         if product_id == "":
             print("You must provide a Product ID (or pass the -l flag) to continue.")
             exit(1)
-        product_id = product_id
+
+    # Fetch the given Product ID
     try:
-        update = MacOSProduct(catalog, product_id)
+        product = MacOSProduct(catalog, product_id)
     except KeyError:
         print("Product ID {} could not be found.".format(product_id))
         exit(1)
     logging.info("Selected macOS Product: {}".format(product_id))
 
     # Download package to disk
-    update.fetchpackages(output_dir)
+    product.fetchpackages(output_dir, keyword="BaseSystem")
 
 if __name__ == "__main__":
     fetchmacos()

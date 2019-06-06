@@ -5,5 +5,35 @@
 
 TOOLS=$PWD/tools
 
-$TOOLS/FetchMacOS/fetch.sh
+print_usage() {
+    echo
+    echo "Usage: $0"
+    echo
+    echo " -s, --high-sierra   Fetch High Sierra media."
+    echo " -m, --mojave        Fetch Mojave media."
+    echo " -c, --catalina      Fetch Catalina media."
+    echo
+}
+
+error() {
+    local error_message="$@"
+    echo "${error_message}" 1>&2;
+}
+
+argument="$1"
+case $argument in
+    -s|--high-sierra)
+        $TOOLS/FetchMacOS/fetch.sh -p 091-95155 -c PublicRelease13 || exit 1;
+        ;;
+    -m|--mojave)
+        $TOOLS/FetchMacOS/fetch.sh -l -c PublicRelease14 || exit 1;
+        ;;
+    -c|--catalina|*)
+        $TOOLS/FetchMacOS/fetch.sh -l -c DeveloperSeed || exit 1;
+        ;;
+    -h|--help)
+        print_usage
+        ;;
+esac
+
 $TOOLS/dmg2img $TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg $PWD/BaseSystem.img
