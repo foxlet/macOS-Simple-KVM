@@ -40,4 +40,4 @@ If instead of QEMU, you'd like to import the setup into Virt-Manager for further
 
 You're done!
 
-Look in the `docs` folder for more information on adding passthrough hardware (for GPU graphics), set up bridged networking, and enabling sound features.
+To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), seting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), and enabling sound features.
