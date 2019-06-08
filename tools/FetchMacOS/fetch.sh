@@ -8,7 +8,12 @@ SCRIPTDIR="$(dirname "$0")";
 cd $SCRIPTDIR
 
 initpip() {
-    sudo easy_install pip
+    if [ -x "$(command -v easy_install)" ]; then
+        sudo easy_install pip
+    else
+        echo "Please install python3-pip or easy_install before continuing."
+        exit 1;
+    fi
     pip install -r requirements.txt --user
 }
 
