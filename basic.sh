@@ -6,6 +6,16 @@ OVMF=$VMDIR/firmware
 #export QEMU_AUDIO_DRV=pa
 #QEMU_AUDIO_DRV=pa
 
+[[ -z "$SYSTEM_DISK" ]] && {
+    echo "Please set the SYSTEM_DISK environment variable"
+    exit 1
+}
+
+[[ -r "$SYSTEM_DISK" ]] || {
+    echo "Can't read system disk image: $SYSTEM_DISK"
+    exit 1
+}
+
 qemu-system-x86_64 \
     -enable-kvm \
     -m 2G \
@@ -26,3 +36,5 @@ qemu-system-x86_64 \
     -device ide-hd,bus=sata.2,drive=ESP \
     -drive id=InstallMedia,if=none,file=BaseSystem.img \
     -device ide-hd,bus=sata.3,drive=InstallMedia \
+    -drive id=SystemDisk,if=none,file="${SYSTEM_DISK}" \
+    -device ide-hd,bus=sata.4,drive=SystemDisk
