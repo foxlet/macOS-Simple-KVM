@@ -27,14 +27,19 @@ Create an empty hard disk using `qemu-img`, changing the name and size to prefer
 qemu-img create -f qcow2 MyDisk.qcow2 64G
 ```
 
-> Note: If you're running on a headless system (such as on Cloud providers), you will need to add `-nographic` and `-vnc :0 -k en-us` (for VNC support) to the end of `basic.sh`.
-
 Then run `basic.sh` to start the machine and install macOS, setting the
 `SYSTEM_DISK` environment variable to the path to your freshly created
 system disk image:
 
 ```
 SYSTEM_DISK=MyDisk.qcow2 ./basic.sh
+```
+
+If you're running on a headless system (such as on Cloud providers), set
+the `HEADLESS` environment variable to 1:
+
+```
+SYSTEM_DISK=MyDisk.qcow2 HEADLESS=1 ./basic.sh
 ```
 
 Remember to partition in Disk Utility first!
