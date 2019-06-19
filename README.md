@@ -7,7 +7,7 @@ By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others.
 You'll need a Linux system with `qemu`, `python3`, `pip` and the KVM extensions installed for this project. A Mac is **not** required. Some examples for different distributions:
 
 ```
-    sudo apt-get install qemu python3 python3-pip  # for Ubuntu, Debian, Mint, and PopOS.
+    sudo apt-get install qemu python3 python3-pip qemu-utils qemu-system # for Ubuntu, Debian, Mint, and PopOS.
     sudo pacman -S qemu python python-pip          # for Arch.
     sudo xbps-install -Su qemu python3 python3-pip # for Void Linux.
 ```
