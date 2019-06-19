@@ -2,14 +2,15 @@
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 
 By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others.
+Find this useful in production? [You can donate here!](https://commerce.coinbase.com/checkout/96dc5777-0abf-437d-a9b5-a78ae2c4c227)
 
 ## Getting Started
 You'll need a Linux system with `qemu`, `python3`, `pip` and the KVM extensions installed for this project. A Mac is **not** required. Some examples for different distributions:
 
 ```
-    sudo apt-get install qemu python3 python3-pip qemu-utils qemu-system # for Ubuntu, Debian, Mint, and PopOS.
-    sudo pacman -S qemu python python-pip          # for Arch.
-    sudo xbps-install -Su qemu python3 python3-pip # for Void Linux.
+    sudo apt-get install qemu-system qemu-utils python3 python3-pip # for Ubuntu, Debian, Mint, and PopOS.
+    sudo pacman -S qemu python python-pip           # for Arch.
+    sudo xbps-install -Su qemu python3 python3-pip  # for Void Linux.
 ```
 
 ## Step 1
@@ -30,8 +31,9 @@ and add it to the end of `basic.sh`:
     -drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
     -device ide-hd,bus=sata.4,drive=SystemDisk \
 ```
+> Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and set up `-vnc` to use it.
 
-Then run `basic.sh` to start the machine and install macOS.
+Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
 
 ## Step 2a (Virtual Machine Manager)
 If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `make.sh --add`.
