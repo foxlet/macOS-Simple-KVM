@@ -12,6 +12,7 @@ You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the 
 sudo apt-get install qemu-system qemu-utils python3 python3-pip  # for Ubuntu, Debian, Mint, and PopOS.
 sudo pacman -S qemu python python-pip            # for Arch.
 sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
+sudo zypper in python3-pip qemu-tools qemu-kvm qemu-x86 qemu-audio-pa  # for openSUSE Tumbleweed
 ```
 
 ## Step 1
