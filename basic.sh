@@ -26,3 +26,5 @@ qemu-system-x86_64 \
     -device ide-hd,bus=sata.2,drive=ESP \
     -drive id=InstallMedia,format=raw,if=none,file=BaseSystem.img \
     -device ide-hd,bus=sata.3,drive=InstallMedia \
+    -display gtk \
+    -vnc :0
