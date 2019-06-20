@@ -37,7 +37,7 @@ and add it to the end of `basic.sh`:
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
 
 ## Step 2a (Virtual Machine Manager)
-If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `make.sh --add`.
+If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo make.sh --add`.
 
 ## Step 3
 
