@@ -4,6 +4,7 @@
 # by Foxlet <foxlet@furcode.co>
 
 VMDIR=$PWD
+MACHINE=$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | egrep -oe ".*-[0-9.]+" | sort -rV | head -1)
 OUT="template.xml"
 
 print_usage() {
@@ -20,7 +21,7 @@ error() {
 }
 
 generate(){
-    sed -e "s|VMDIR|$VMDIR|g" tools/template.xml.in > $OUT
+    sed -e "s|VMDIR|$VMDIR|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
     echo "$OUT has been generated in $VMDIR"
 }
 
