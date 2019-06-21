@@ -5,7 +5,7 @@
   <currentMemory unit='KiB'>2097152</currentMemory>
   <vcpu placement='static'>4</vcpu>
   <os>
-    <type arch='x86_64' machine='pc-q35-3.0'>hvm</type>
+    <type arch='x86_64' machine='MACHINE'>hvm</type>
     <loader readonly='yes' type='pflash'>VMDIR/firmware/OVMF_CODE.fd</loader>
     <nvram>VMDIR/firmware/OVMF_VARS-1024x768.fd</nvram>
     <boot dev='hd'/>
