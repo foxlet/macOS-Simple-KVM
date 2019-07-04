@@ -1,18 +1,18 @@
 # macOS-Simple-KVM
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 
-By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Find this useful? [You can donate here!](https://commerce.coinbase.com/checkout/96dc5777-0abf-437d-a9b5-a78ae2c4c227)
+By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Find this useful? You can donate [on Coinbase](https://commerce.coinbase.com/checkout/96dc5777-0abf-437d-a9b5-a78ae2c4c227) or [Paypal!](https://paypal.com/cgi-bin/webscr?cmd=_xclick&business=foxlet%40furcode%2eco&item_name=macOS%2dSimple%2dKVM).
 
-New to macOS KVM? Check [the FAQs.](docs/FAQs.md)
+New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
 ## Getting Started
-You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM extensions installed for this project. A Mac is **not** required. Some examples for different distributions:
+You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
 
 ```
 sudo apt-get install qemu-system qemu-utils python3 python3-pip  # for Ubuntu, Debian, Mint, and PopOS.
 sudo pacman -S qemu python python-pip            # for Arch.
 sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
-sudo zypper in python3-pip qemu-tools qemu-kvm qemu-x86 qemu-audio-pa  # for openSUSE Tumbleweed
+sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
 ```
 
 ## Step 1
@@ -38,7 +38,13 @@ and add it to the end of `basic.sh`:
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
 
 ## Step 2a (Virtual Machine Manager)
-If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `make.sh --add`.
+If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo ./make.sh --add`.
+
+## Step 2b (Headless Systems)
+If you're using a cloud-based/headless system, you can use `headless.sh` to set up a quick VNC instance. Settings are defined through variables as seen in the following example. VNC will start on port `5900` by default.
+```
+HEADLESS=1 MEM=1G CPUS=2 SYSTEM_DISK=MyDisk.qcow2 ./headless.sh
+```
 
 ## Step 3
 
