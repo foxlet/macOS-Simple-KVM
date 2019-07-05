@@ -15,6 +15,11 @@ sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
 sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
 ```
 
+### For networking using tun/tap on Ubuntu 
+```
+sudo apt-get install uml-utilities
+```
+
 ## Step 1
 Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
 ```
