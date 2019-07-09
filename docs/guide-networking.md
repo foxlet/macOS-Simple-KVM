@@ -1,5 +1,8 @@
 Guide to Bridged Networking
 ===========================
+
+*Note*: you don't need to set up bridged networking just to get internet access. With `basic.sh` you should be able to access the internet from MacOS automatically. *However*, the ICMP protocol (used for `ping`) is not supported with the default networking solution. 
+
 To set up bridged networking for the macOS VM, use one of the following methods:
 
 
