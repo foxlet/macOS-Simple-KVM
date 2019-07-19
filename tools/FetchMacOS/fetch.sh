@@ -5,7 +5,7 @@
 
 set +x;
 SCRIPTDIR="$(dirname "$0")";
-cd $SCRIPTDIR
+cd "$SCRIPTDIR"
 
 initpip() {
     if [ -x "$(command -v easy_install)" ]; then
@@ -43,6 +43,6 @@ getpython(){
 
 getpip
 getpython
-$PYTHONBIN fetch-macos.py $*
+$PYTHONBIN fetch-macos.py "$@"
 
 exit;
