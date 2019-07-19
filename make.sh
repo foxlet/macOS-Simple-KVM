@@ -4,7 +4,7 @@
 # by Foxlet <foxlet@furcode.co>
 
 VMDIR=$PWD
-MACHINE=$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | egrep -oe ".*-[0-9.]+" | sort -rV | head -1)
+MACHINE="$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | grep -Eoe ".*-[0-9.]+" | sort -rV | head -1)"
 OUT="template.xml"
 
 print_usage() {
@@ -16,7 +16,7 @@ print_usage() {
 }
 
 error() {
-    local error_message="$@"
+    local error_message="$*"
     echo "${error_message}" 1>&2;
 }
 
