@@ -16,24 +16,24 @@ print_usage() {
 }
 
 error() {
-    local error_message="$@"
+    local error_message="$*"
     echo "${error_message}" 1>&2;
 }
 
 argument="$1"
 case $argument in
-    -s|--high-sierra)
-        $TOOLS/FetchMacOS/fetch.sh -p 091-95155 -c PublicRelease13 || exit 1;
-        ;;
-    -m|--mojave)
-        $TOOLS/FetchMacOS/fetch.sh -l -c PublicRelease14 || exit 1;
-        ;;
-    -c|--catalina|*)
-        $TOOLS/FetchMacOS/fetch.sh -l -c DeveloperSeed || exit 1;
-        ;;
     -h|--help)
         print_usage
         ;;
+    -s|--high-sierra)
+        "$TOOLS/FetchMacOS/fetch.sh" -p 091-95155 -c PublicRelease13 || exit 1;
+        ;;
+    -m|--mojave)
+        "$TOOLS/FetchMacOS/fetch.sh" -l -c PublicRelease14 || exit 1;
+        ;;
+    -c|--catalina|*)
+        "$TOOLS/FetchMacOS/fetch.sh" -l -c DeveloperSeed || exit 1;
+        ;;
 esac
 
-$TOOLS/dmg2img $TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg $PWD/BaseSystem.img
+"$TOOLS/dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"
