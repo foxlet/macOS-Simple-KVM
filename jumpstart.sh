@@ -12,6 +12,7 @@ print_usage() {
     echo " -s, --high-sierra   Fetch High Sierra media."
     echo " -m, --mojave        Fetch Mojave media."
     echo " -c, --catalina      Fetch Catalina media."
+    echo " -a, --all           Fetch ALL media."
     echo
 }
 
@@ -31,6 +32,14 @@ case $argument in
     -c|--catalina|*)
         $TOOLS/FetchMacOS/fetch.sh -l -c DeveloperSeed || exit 1;
         ;;
+    -a|--all)
+        $TOOLS/FetchMacOS/fetch.sh -a -k BaseSystem || exit 1;
+        for p in $(ls -1 $TOOLS/FetchMacOS/SoftwareUpdate/) do
+            dmg2img $TOOLS/FetchMacOS/SoftwareUpdate/$p/BaseSystem.dmg $TOOLS/FetchMacOS/SoftwareUpdate/$p/BaseSystem.img;
+        done;
+        echo "NOTE: Because you chose to download ALL media instead of a specific version, you can find each image in ./tools/FetchMacOS/SoftwareUpdate/\$VERSION/BaseSystem.img instead of the default location."
+        ;;
+
     -h|--help)
         print_usage
         ;;
