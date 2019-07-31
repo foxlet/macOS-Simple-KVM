@@ -1,0 +1,3 @@
+[submodule "tools/dmg2img-src"]
+	path = tools/dmg2img-src
+	url = https://github.com/foxlet/dmg2img.git
