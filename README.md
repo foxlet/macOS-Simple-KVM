@@ -13,6 +13,7 @@ sudo apt-get install qemu-system qemu-utils python3 python3-pip  # for Ubuntu, D
 sudo pacman -S qemu python python-pip            # for Arch.
 sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
 sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
+sudo dnf install qemu qemu-img python3 python3-pip # for Fedora
 ```
 
 ## Step 1
