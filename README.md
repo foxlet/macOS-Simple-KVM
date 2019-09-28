@@ -6,13 +6,13 @@ By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Fin
 New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
 ## Getting Started
-You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
+You'll need a Linux system with `qemu` (3.1 or later), `curl`, `xmlstarlet` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
 
 ```
-sudo apt-get install qemu-system qemu-utils python3 python3-pip  # for Ubuntu, Debian, Mint, and PopOS.
-sudo pacman -S qemu python python-pip            # for Arch.
-sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
-sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
+sudo apt-get install qemu-system qemu-utils curl xmlstarlet  # for Ubuntu, Debian, Mint, and PopOS.
+sudo pacman -S qemu curl xmlstarlet          # for Arch.
+sudo xbps-install -Su qemu curl xmlstarlet   # for Void Linux.
+sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa curl xmlstarlet  # for openSUSE Tumbleweed
 ```
 
 ## Step 1
