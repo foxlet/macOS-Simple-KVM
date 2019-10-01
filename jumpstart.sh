@@ -36,4 +36,5 @@ case $argument in
         ;;
 esac
 
-"$TOOLS/dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"
+QEMU_IMG_VERSION="$(qemu-img --version | awk '/version/ {print $NF}')"
+[ "${QEMU_IMG_VERSION%%.*}" -ge 4 ] && qemu-img convert "${TOOLS}/FetchMacOS/BaseSystem/BaseSystem.dmg" -O raw "${PWD}/BaseSystem.img" || "${TOOLS}/dmg2img" "${TOOLS}/FetchMacOS/BaseSystem/BaseSystem.dmg" "${PWD}/BaseSystem.img"
