@@ -103,7 +103,7 @@
   </devices>
   <qemu:commandline>
     <qemu:arg value='-cpu'/>
-    <qemu:arg value='Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check'/>
+    <qemu:arg value='Penryn,kvm=on,vendor=GenuineIntel,vmx,rdtscp,+invtsc,vmware-cpuid-freq=on,+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check'/>
     <qemu:arg value='-device'/>
     <qemu:arg value='isa-applesmc,osk=ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc'/>
     <qemu:arg value='-smbios'/>

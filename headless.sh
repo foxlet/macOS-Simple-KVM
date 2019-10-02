@@ -33,7 +33,7 @@ qemu-system-x86_64 \
     -m $MEM \
     -machine q35,accel=kvm \
     -smp $CPUS \
-    -cpu Penryn,vendor=GenuineIntel,kvm=on,+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc \
+    -cpu Penryn,vendor=GenuineIntel,kvm=on,vmx,rdtscp,+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc \
     -device isa-applesmc,osk="$OSK" \
     -smbios type=2 \
     -drive if=pflash,format=raw,readonly,file="$OVMF/OVMF_CODE.fd" \
