@@ -32,7 +32,7 @@ case $argument in
         "$TOOLS/FetchMacOS/fetch.sh" -l -c PublicRelease14 || exit 1;
         ;;
     -c|--catalina|*)
-        "$TOOLS/FetchMacOS/fetch.sh" -l -c DeveloperSeed || exit 1;
+        "$TOOLS/FetchMacOS/fetch.sh" -l -c PublicRelease || exit 1;
         ;;
 esac
 
