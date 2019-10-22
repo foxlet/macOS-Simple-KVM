@@ -58,3 +58,34 @@ You can optionally use the `vmxnet3` driver for higher performance compared to t
 ```
     -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
 ```
+
+## Using Netctl
+You can also use netctl and the qemu bridge helper to control the bridge and tun/tap interfaces. Replace `DEVICENAME` with your ethernet card's device name.
+
+### Create netctl configuration file in /etc/netctl (f.e. /etc/netctl/kvm-bridge)
+```
+Description="Bridge Interface br10 : DEVICENAME"
+Interface=br10
+Connection=bridge
+BindsToInterfaces=(DEVICENAME)
+IP=dhcp
+# If you want also for DHCPv6,uncomment below line
+#IP6=dhcp
+```
+
+### Activate netctl bridge handler with system boot
+```
+sudo netctl enable kvm-bridge
+```
+
+### Create bridge whitelist file for qemu (/etc/qemu/bridge.conf)
+```
+allow br10
+```
+
+## Attach Bridge to QEMU
+Now you'll have to add the following line to `basic.sh`, replacing `-netdev user,id=net0`. Change `br10` to your corresponding device name.
+
+```
+    -netdev bridge,br=br10,id=net0 \
+```
