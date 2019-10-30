@@ -13,7 +13,7 @@ import sys
 __author__ = "Foxlet"
 __copyright__ = "Copyright 2019, FurCode Project"
 __license__ = "GPLv3"
-__version__ = "1.3"
+__version__ = "1.4"
 
 logging.basicConfig(format='%(asctime)-15s %(message)s', level=logging.INFO)
 logger = logging.getLogger('webactivity')
@@ -48,32 +48,50 @@ class Filesystem:
             if exception.errno != errno.EEXIST:
                 raise
 
+    @staticmethod
+    def fetch_plist(url):
+        logging.info("Network Request: %s", "Fetching {}".format(url))
+        plist_raw = requests.get(url, headers=ClientMeta.swupdate)
+        plist_data = plist_raw.text.encode('UTF-8')
+        return plist_data
+    
+    @staticmethod
+    def parse_plist(catalog_data):
+        if sys.version_info > (3, 0):
+            root = plistlib.loads(catalog_data)
+        else:
+            root = plistlib.readPlistFromString(catalog_data)
+        return root
 
 class SoftwareService:
     # macOS 10.15 is available in 4 different catalogs from SoftwareScan
-    catalogs = {"CustomerSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15customerseed-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
-                "DeveloperSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15seed-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
-                "PublicSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15beta-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
-                "PublicRelease":"https://swscan.apple.com/content/catalogs/others/index-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
-                "PublicRelease14":"https://swscan.apple.com/content/catalogs/others/index-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
-                "PublicRelease13":"https://swscan.apple.com/content/catalogs/others/index-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog"}
+    catalogs = {
+                "10.15": {
+                    "CustomerSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15customerseed-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
+                    "DeveloperSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15seed-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
+                    "PublicSeed":"https://swscan.apple.com/content/catalogs/others/index-10.15beta-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
+                    "PublicRelease":"https://swscan.apple.com/content/catalogs/others/index-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog"
+                        },
+                "10.14": {
+                    "PublicRelease":"https://swscan.apple.com/content/catalogs/others/index-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog"
+                        },
+                "10.13": {
+                    "PublicRelease":"https://swscan.apple.com/content/catalogs/others/index-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog"
+                        }
+                }
 
-    def __init__(self, catalog_id):
-        self.catalog_url = self.catalogs.get(catalog_id, self.catalogs["PublicRelease"])
+    def __init__(self, version, catalog_id):
+        self.version = version
+        self.catalog_url = self.catalogs.get(version).get(catalog_id)
         self.catalog_data = ""
 
     def getcatalog(self):
-        logging.info("Network Request: %s", "Fetching {}".format(self.catalog_url))
-        catalog_raw = requests.get(self.catalog_url, headers=ClientMeta.swupdate)
-        self.catalog_data = catalog_raw.text.encode('UTF-8')
-        return catalog_raw.text.encode('UTF-8')
+        self.catalog_data = Filesystem.fetch_plist(self.catalog_url)
+        return self.catalog_data
 
     def getosinstall(self):
         # Load catalogs based on Py3/2 lib
-        if sys.version_info > (3, 0):
-            root = plistlib.loads(self.catalog_data)
-        else:
-            root = plistlib.readPlistFromString(self.catalog_data)
+        root = Filesystem.parse_plist(self.catalog_data)
 
         # Iterate to find valid OSInstall packages
         ospackages = []
@@ -81,15 +99,20 @@ class SoftwareService:
         for product in products:
             if products.get(product, {}).get('ExtendedMetaInfo', {}).get('InstallAssistantPackageIdentifiers', {}).get('OSInstall', {}) == 'com.apple.mpkg.OSInstall':
                 ospackages.append(product)
-        return ospackages
+                
+        # Iterate for an specific version
+        candidates = []
+        for product in ospackages:
+            meta_url = products.get(product, {}).get('ServerMetadataURL', {})
+            if self.version in Filesystem.parse_plist(Filesystem.fetch_plist(meta_url)).get('CFBundleShortVersionString', {}):
+                candidates.append(product)
+        
+        return candidates
 
 
 class MacOSProduct:
     def __init__(self, catalog, product_id):
-        if sys.version_info > (3, 0):
-            root = plistlib.loads(catalog)
-        else:
-            root = plistlib.readPlistFromString(catalog)
+        root = Filesystem.parse_plist(catalog)
         products = root['Products']
         self.date = root['IndexDate']
         self.product = products[product_id]
@@ -107,21 +130,17 @@ class MacOSProduct:
 
 @click.command()
 @click.option('-o', '--output-dir', default="BaseSystem/", help="Target directory for package output.")
+@click.option('-v', '--catalog-version', default="10.15", help="Version of catalog.")
 @click.option('-c', '--catalog-id', default="PublicRelease", help="Name of catalog.")
 @click.option('-p', '--product-id', default="", help="Product ID (as seen in SoftwareUpdate).")
-@click.option('-l', '--latest', is_flag=True, help="Get latest available macOS package.")
-def fetchmacos(output_dir="BaseSystem/", catalog_id="PublicRelease", product_id="", latest=False):
+def fetchmacos(output_dir="BaseSystem/", catalog_version="10.15", catalog_id="PublicRelease", product_id=""):
     # Get the remote catalog data
-    remote = SoftwareService(catalog_id)
+    remote = SoftwareService(catalog_version, catalog_id)
     catalog = remote.getcatalog()
 
-    # If latest is used, find the latest OSInstall package
-    if latest:
-        product_id = remote.getosinstall()[-1]
-    else:
-        if product_id == "":
-            print("You must provide a Product ID (or pass the -l flag) to continue.")
-            exit(1)
+    # If no product is given, find the latest OSInstall product
+    if product_id == "":
+        product_id = remote.getosinstall()[0]
 
     # Fetch the given Product ID
     try:
@@ -129,6 +148,7 @@ def fetchmacos(output_dir="BaseSystem/", catalog_id="PublicRelease", product_id=
     except KeyError:
         print("Product ID {} could not be found.".format(product_id))
         exit(1)
+        
     logging.info("Selected macOS Product: {}".format(product_id))
 
     # Download package to disk
