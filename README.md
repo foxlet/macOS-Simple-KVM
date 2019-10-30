@@ -1,7 +1,7 @@
 # macOS-Simple-KVM
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 
-By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Find this useful? You can donate [on Coinbase](https://commerce.coinbase.com/checkout/96dc5777-0abf-437d-a9b5-a78ae2c4c227) or [Paypal!](https://paypal.com/cgi-bin/webscr?cmd=_xclick&business=foxlet%40furcode%2eco&item_name=macOS%2dSimple%2dKVM).
+By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Find this useful? You can donate [on Coinbase](https://commerce.coinbase.com/checkout/96dc5777-0abf-437d-a9b5-a78ae2c4c227) or [Paypal!](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=QFXXKKAB2B9MA&item_name=macOS-Simple-KVM).
 
 New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
