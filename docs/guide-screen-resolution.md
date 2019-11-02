@@ -17,3 +17,5 @@ _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-
 
  - Edit that to your preferred screen resolution.
  - Some odd/intermediate resolutions like 1366×768 may not work well. Try to stick to more common 16:9, 16:10, and 4:3 form factors.
+
+If the display appears garbled, you need to change the OVMF resolution to match your selected resolution. When booting the VM, during the splash screen before Clover starts, press F2. Go to `Device Manager`, then `OVMF Platform Configuration` and change the resolution. Save your changes and exit. You may have to reboot the VM again for the changes to take effect.
