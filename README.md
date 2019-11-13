@@ -1,8 +1,8 @@
-## Check to see if virtualization is enabled
+## Check to see if processor virtualization is enabled
 
 `dmesg | grep -E "DMAR|IOMMU"`
 
-if no output then enable Virtulization in BIOS
+if no output then enable virtulization in BIOS
 
 ## GET ID USBs
 
