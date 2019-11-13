@@ -1,4 +1,49 @@
-using: https://gitlab.com/driverctl/driverctl
+## Check to see if virtualization is enabled
+
+`dmesg | grep -E "DMAR|IOMMU"`
+
+if no output then enable Virtulization in BIOS
+
+## GET ID USBs
+
+`lspci -nn | grep -i USB`
+
+## Record the first number for QEMU, the second for GRUB.
+
+`00:14.0 USB controller [0c03]: Intel Corporation Cannon Lake PCH USB 3.1 xHCI Host Controller [8086:a36d] (rev 10)`
+
+## Add the second number to grub.
+
+`sudo nano /etc/default/grub`
+
+`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash iommu=pt intel_iommu=on vfio-pci.ids=8086:a36d"`
+
+## Update GRUB
+
+`sudo update-grub`
+
+## Reboot
+
+`sudo reboot`
+
+## Check if vfio is enabled
+
+`dmesg | grep -i vfio`
+
+## Uncomment bottom lines from macOS.sh using the frist number from lspci -nn | grep -i USB device you passed
+## edit USBmacOS.sh, same value.
+
+`sudo ./USBmacOS.sh`
+
+## make sure you have macOS.qcow2 in the folder.
+
+Downloads: 
+
+It works!
+
+
+
+
 
 # macOS-Simple-KVM
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
