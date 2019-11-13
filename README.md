@@ -54,6 +54,8 @@ Download macOS.7z Virtual Disk Image: https://drive.google.com/open?id=1EnbopO0O
 
 Alt Link: https://archive.org/details/macOS.7z
 
+## Extract macOS.7z to you macOS-Simple-KVM folder
+
 ## Execute the Virtual Machine and Pass through PCI USB Controller
 
 `sudo ./USBmacOS.sh`
