@@ -62,10 +62,12 @@ Alt Link: https://archive.org/details/macOS.7z
 
 `sudo ./USBmacOS.sh`
 
-Note: if you get an issue like ‘qemu-system-x86_64: -device vfio-pci,host=00:14.0,bus=port.1,multifunction=on: vfio error: 0000:00:14.0: group 4 is not viable
-Please ensure all devices within the iommu_group are bound to their vfio bus driver.’ 
+Note: if you get an issue like `qemu-system-x86_64: -device vfio-pci,host=00:14.0,bus=port.1,multifunction=on: vfio error: 0000:00:14.0: group 4 is not viable
+Please ensure all devices within the iommu_group are bound to their vfio bus driver.`
 
 You need to unbind multiple groups: https://www.reddit.com/r/jailbreak/comments/dvolsy/comment/f7ei2tp
+### vmra1n unbind and resolve this https://github.com/foxlet/vmra1n
+
 
 # Plug in your iPhone/iPad/iPod and run the tool! checkm8 Apple!
 
