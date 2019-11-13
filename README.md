@@ -42,6 +42,7 @@ if no output then enable virtulization in BIOS
 ## make sure you have macOS.qcow2 in the folder.
 
 Download macOS.7z Virtual Disk Image: https://drive.google.com/open?id=1EnbopO0On4vZN7X_8zPr-k4EjCTuoQLM
+
 Alt Link: https://archive.org/details/macOS.7z
 
 It works!
