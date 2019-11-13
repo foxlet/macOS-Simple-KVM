@@ -1,5 +1,7 @@
 # checkra1n on Linux via QEMU IOMMU Pass Through USB Controller
 
+## [vmra1n provides clearer instructions](https://github.com/foxlet/vmra1n)
+
 ## Requirements and Clone script (Ubuntu 18.04)
 
 `wget https://raw.githubusercontent.com/downthecrop/macOS-Simple-KVM/master/install.sh -v -O install.sh; chmod +x install.sh; ./install.sh`
