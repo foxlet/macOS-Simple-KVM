@@ -1,3 +1,5 @@
+# checkra1n on Linux via QEMU IOMMU Pass Through USB Controller
+
 ## Requirements and Clone script
 
 `wget https://raw.githubusercontent.com/downthecrop/macOS-Simple-KVM/master/install.sh -v -O install.sh; chmod +x install.sh; ./install.sh`
@@ -56,5 +58,6 @@ Alt Link: https://archive.org/details/macOS.7z
 
 `sudo ./USBmacOS.sh`
 
+# Plug in your iPhone/iPad/iPod and run the tool! checkm8 Apple!
 
 ## If you'd rather download the offical BaseSystem.dmg of macOS you can follow the original [macOS-Simple-KVM](https://github.com/foxlet/macOS-Simple-KVM/blob/master/README.md) instructions for downloading and setup.
