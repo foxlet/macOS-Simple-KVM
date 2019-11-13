@@ -1,0 +1,5 @@
+ACTION=="add", SUBSYSTEM=="vfio", TAG+="systemd", PROGRAM="/usr/lib/udev/vfio_name %k", ENV{SYSTEMD_ALIAS}+="$result"
+
+# XXX should we also rename uio devices? Probably...
+ACTION=="add", SUBSYSTEM=="uio", TAG+="systemd"
+

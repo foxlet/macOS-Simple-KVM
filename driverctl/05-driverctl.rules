@@ -1,0 +1,2 @@
+
+ACTION=="add", TEST=="/etc/driverctl.d/$env{SUBSYSTEM}-$kernel", TAG+="systemd", ENV{SYSTEMD_WANTS}="driverctl@$env{SUBSYSTEM}-$kernel.service"

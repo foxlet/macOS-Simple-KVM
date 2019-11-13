@@ -1,0 +1,17 @@
+Limitations / future ideas
+--------------------------
+
+- PCI slot numbers are not really static, it'd be good to support some
+  other means of addressing a given device. However prior to loading
+  an actual driver there isn't much data to go on with, just about
+  the only thing is the actual pci-id which *is* static and reliable
+  but using it'd mean overriding all such devices. Which might be a
+  better option than not being able to do it at all.
+- Rewrite it in some real programming language
+- In current kernels (as of 4.6.x) very limited number of subsystems
+  support driver_override. The rest could be supported if we used
+  the older unbind/bind mechanism, but I'm lazy.
+- Some devices might need overriding in the initrd phase already,
+  add dracut integration
+- Rewrite in an actual programming language (read: C)
+

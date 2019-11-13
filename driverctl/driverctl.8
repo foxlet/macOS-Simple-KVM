@@ -1,0 +1,157 @@
+.\" driverctl - Device driver control utility
+.TH driverctl 8
+.SH NAME
+driverctl - Device driver control utility.
+.SH SYNOPSIS
+\fBdriverctl\fR [OPTIONS] COMMAND [DEVICE [DRIVER]]\fR
+
+.SH DESCRIPTION
+
+\fBdriverctl\fR may be used to manipulate and inspect the system
+device driver choices.
+
+Devices are normally assigned to their sole designated kernel driver
+by default. However in some situations it may be desireable to
+override that default, for example to try an older driver to
+work around a regression in a driver or to try an experimental alternative
+driver. Another common use-case is pass-through drivers and driver
+stubs to allow userspace to drive the device, such as in case of
+virtualization.
+
+\fBdriverctl\fR integrates with \fBudev\fR to support overriding
+driver selection for both cold- and hotplugged devices from the
+moment of discovery, but can also change already assigned drivers,
+assuming they are not in use by the system. The driver overrides
+created by \fBdriverctl\fR are persistent across system reboots
+by default.
+
+.SH OPTIONS
+.PP
+The following options are understood:
+
+.PP
+\fB-b|--bus <BUS>\fR
+.RS 4
+Operate on devices on a given bus, such as \fBpci\fR or \fBusb\fR.
+Available options depend on system hardware and kernel, for example
+as of kernel 4.6.7 the USB subsystem does not yet support driver_override.
+By default \fBpci\fR bus is used.
+.RE
+
+.PP
+\fB--debug|--verbose|-v\fR
+.RS 4
+Verbose mode, output more detailed information during operation.
+.RE
+
+.PP
+\fB-h|--help\fR
+.RS 4
+Output usage information.
+.RE
+
+.PP
+\fB--noprobe\fR
+.RS 4
+Do not (re)probe the device after changing the driver. Applies to
+the \fB*-override\fR commands.
+.RE
+
+.PP
+\fB--nosave\fR
+.RS 4
+Do not set/unset permanently. Applies to \fBset-override\fR and
+\fBunset-override\fR commands.
+.RE
+
+.SH COMMANDS
+
+.PP
+The following commands are understood:
+
+.PP
+\fBset-override\fR <DEVICE> <DRIVER>
+.RS 4
+Set a driver override for a device. By default the current driver
+is unbound from the device, the new driver is loaded into kernel,
+bound and the override is saved permanently.
+
+As a special case, specifying "none" as the driver will prevent
+any driver to be bound to the device until the override is removed.
+.RE
+
+.PP
+\fBunset-override\fR <DEVICE>
+.RS 4
+Unset a driver override for a device. By default the current driver
+is unbound from the device, the default driver of the device is bound
+and the override is permanently removed.
+.RE
+
+.PP
+\fBload-override\fR <DEVICE>
+.RS 4
+Load a previously set driver override for device from disk. There's
+usually no need to invoke this manually, the command exists mostly
+for udev interaction.
+.RE
+
+.PP
+\fBlist-devices\fR [DEVICETYPE]
+.RS 4
+List currently plugged, overridable system devices on a bus (\fBpci\fR
+by default) along with their current drivers. Any overridden drivers
+are marked with \fB[*]\fR. With \fB-v\fR options, additional device
+description from udev database is shown to help identify devices.
+It is possible to limit displayed devices by specifying a device type
+as an optional argument, for example "network" to list only network devices.
+.RE
+
+.PP
+\fBlist-overrides\fR [DEVICETYPE]
+.RS 4
+List currently overridden devices on a bus (\fBpci\fR by default)
+With \fB-v\fR options, additional device
+description from udev database is shown to help identify devices.
+It is possible to limit displayed devices by specifying a device type
+as an optional argument, for example "network" to list only network devices.
+.RE
+
+.SH "EXIT STATUS"
+On success, 0 is returned, a non-zero failure code otherwise.
+
+.SH EXAMPLES
+.nf
+Find devices currently driven by \fBixgbe\fR driver:
+
+# driverctl -v list-devices | grep ixgbe
+0000:01:00.0 ixgbe (Ethernet 10G 4P X520/I350 rNDC)
+0000:01:00.1 ixgbe (Ethernet 10G 4P X520/I350 rNDC)
+
+Change them to use the \fBvfio-pci\fR driver:
+# driverctl set-override 0000:01:00.0 vfio-pci
+# driverctl set-override 0000:01:00.1 vfio-pci
+
+Find devices with driver overrides:
+# driverctl -v list-overrides
+0000:01:00.0 vfio-pci (Ethernet 10G 4P X520/I350 rNDC)
+0000:01:00.1 vfio-pci (Ethernet 10G 4P X520/I350 rNDC)
+
+Find network devices:
+# driverctl list-devices network
+0000:01:00.0 ixgbe
+0000:01:00.1 ixgbe
+0000:06:00.0 igb
+0000:06:00.1 igb
+
+Remove the override from slot 0000:01:00.1:
+# driverctl unset-override 0000:01:00.1
+
+.SH FILES
+\fI/etc/driverctl.d/*\fR
+
+.SH "SEE ALSO"
+\fBudev\fR(7)
+\fBudevadm\fR(8)
+\fBlspci\fR(8)
+\fBlsusb\fR(8)

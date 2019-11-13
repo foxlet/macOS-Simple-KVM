@@ -1,0 +1,100 @@
+driverctl is a device driver control utility for Linux
+
+Description
+-----------
+
+driverctl is a tool for manipulating and inspecting the system
+device driver choices.
+
+Devices are normally assigned to their sole designated kernel driver
+by default. However in some situations it may be desireable to
+override that default, for example to try an older driver to
+work around a regression in a driver or to try an experimental alternative
+driver. Another common use-case is pass-through drivers and driver
+stubs to allow userspace to drive the device, such as in case of
+virtualization.
+
+driverctl integrates with udev to support overriding
+driver selection for both cold- and hotplugged devices from the
+moment of discovery, but can also change already assigned drivers,
+assuming they are not in use by the system. The driver overrides
+created by driverctl are persistent across system reboots
+by default.
+
+License
+-------
+
+Licensed under the GNU Lesser General Public License aka LGPL v2.1.
+See COPYING for details.
+
+Source repository
+-----------------
+
+git clone https://gitlab.com/driverctl/driverctl.git
+
+System requirements
+-------------------
+
+- udev, tested with versions >= 219 but older versions are likely
+  to work as well
+- kernel >= 3.16 or backported support for driver_override device
+  binding path:
+  https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=782a985d7af26db39e86070d28f987cad21313c0
+- bash-completion (optional)
+
+Installation
+------------
+
+"make rpm" should create a working package to be installed for those on
+rpm-based distros (tested on recent Fedora and RHEL 7), others should
+be able to use "make install" (but note there's no "uninstall" target)
+
+Usage
+-----
+
+Find devices currently driven by ixgbe driver:
+
+# driverctl -v list-devices | grep ixgbe
+0000:01:00.0 ixgbe (Ethernet 10G 4P X520/I350 rNDC)
+0000:01:00.1 ixgbe (Ethernet 10G 4P X520/I350 rNDC)
+
+Change them to use the vfio-pci driver:
+# driverctl set-override 0000:01:00.0 vfio-pci
+# driverctl set-override 0000:01:00.1 vfio-pci
+
+Find devices with driver overrides:
+# driverctl -v list-overrides
+0000:01:00.0 vfio-pci (Ethernet 10G 4P X520/I350 rNDC)
+0000:01:00.1 vfio-pci (Ethernet 10G 4P X520/I350 rNDC)
+
+Find network devices:
+# driverctl list-devices network
+0000:01:00.0 ixgbe
+0000:01:00.1 ixgbe
+0000:06:00.0 igb
+0000:06:00.1 igb
+
+Remove the override from slot 0000:01:00.1:
+# driverctl unset-override 0000:01:00.1
+
+Extras
+------
+
+In addition to the actual driverctl utility, udev rules to expose
+VFIO and UIO devices on systemd level are included to make them
+dependable for services. 
+
+Since the vfio device naming is based on IOMMU groups it is rather
+unpredictable on the outset: for example on my laptop the NIC at
+PCI slot 0000:00:19.0 would appear as /sys/devices/virtual/vfio/3
+when bound to the vfio_pci driver. To make this more discoverable,
+systemd aliases are added so the device is additionally addressable
+by its PCI slot name, in this example it'd be:
+sys-devices-pci0000:00-0000:00:19.0-vfio.device.
+
+Contributing etc
+----------------
+
+Patches, bug reports and other feedback are welcome via the
+project page: https://gitlab.com/driverctl/driverctl
+  

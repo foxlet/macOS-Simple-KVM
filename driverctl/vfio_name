@@ -1,0 +1,11 @@
+#!/bin/bash
+
+iog="/sys/kernel/iommu_groups/$(basename "$1")"
+test -d "$iog" || exit 1
+
+for f in "$iog"/devices/*; do
+    lnk="$(readlink -f "$f")"
+    if [ -L "$lnk/driver" ]; then
+        echo "$lnk/$SUBSYSTEM"
+    fi
+done

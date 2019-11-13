@@ -1,0 +1,13 @@
+[Unit]
+Description=Load the driverctl override for %i
+DefaultDependencies=no
+Before=basic.target
+RefuseManualStart=yes
+RefuseManualStop=yes
+ConditionPathExists=/etc/driverctl.d/%i
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/driverctl load-override %I
+TimeoutStartSec=300
