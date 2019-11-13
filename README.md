@@ -18,9 +18,15 @@ if no output then enable virtulization in BIOS
 
 ## Add the second number to grub. [8086:a36d]
 
-`sudo nano /etc/default/grub`
+`sudo gedit /etc/default/grub`
+
+Intel
 
 `GRUB_CMDLINE_LINUX_DEFAULT="quiet splash iommu=pt intel_iommu=on vfio-pci.ids=XXXX:XXXX"`
+
+AMD
+
+`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash iommu=pt amd_iommu=on vfio-pci.ids=XXXX:XXXX"`
 
 ## Update GRUB
 
