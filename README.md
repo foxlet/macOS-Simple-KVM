@@ -42,8 +42,9 @@ AMD
 
 ## Change Configuration Files
 
-Uncomment bottom lines from macOS.sh using the first number from `lspci -nn | grep -i USB` device you passed
-edit USBmacOS.sh, same value.
+Uncomment bottom lines from `macOS.sh` using the first number from the `lspci -nn | grep -i USB` device you passed through
+
+edit `USBmacOS.sh` using the first number from the `lspci -nn | grep -i USB` device you passed through
 
 ## Make sure you have macOS.qcow2 in the folder.
 
