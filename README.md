@@ -40,7 +40,7 @@ AMD
 
 `dmesg | grep -i vfio`
 
-## Uncomment bottom lines from macOS.sh using the frist number from lspci -nn | grep -i USB device you passed
+## Uncomment bottom lines from macOS.sh using the frist number from `lspci -nn | grep -i USB` device you passed
 ## edit USBmacOS.sh, same value.
 
 `sudo ./USBmacOS.sh`
