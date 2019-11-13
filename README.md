@@ -40,20 +40,23 @@ AMD
 
 `dmesg | grep -i vfio`
 
-## Uncomment bottom lines from macOS.sh using the frist number from `lspci -nn | grep -i USB` device you passed
-## edit USBmacOS.sh, same value.
+## Change Configuration Files
 
-`sudo ./USBmacOS.sh`
+Uncomment bottom lines from macOS.sh using the first number from `lspci -nn | grep -i USB` device you passed
+edit USBmacOS.sh, same value.
 
-## make sure you have macOS.qcow2 in the folder.
+## Make sure you have macOS.qcow2 in the folder.
 
 Download macOS.7z Virtual Disk Image: https://drive.google.com/open?id=1EnbopO0On4vZN7X_8zPr-k4EjCTuoQLM
 
 Alt Link: https://archive.org/details/macOS.7z
 
-It works!
+## Execute the Virtual Machine and Pass through PCI USB Controller
+
+`sudo ./USBmacOS.sh`
 
 
+## DONE
 
 
 
