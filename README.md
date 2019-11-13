@@ -1,3 +1,7 @@
+## Requirements and Clone script
+
+`wget https://raw.githubusercontent.com/downthecrop/macOS-Simple-KVM/master/install.sh -v -O install.sh; chmod +x install.sh; ./install.sh`
+
 ## Check to see if processor virtualization is enabled
 
 `dmesg | grep -E "DMAR|IOMMU"`
