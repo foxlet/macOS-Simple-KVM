@@ -12,11 +12,11 @@ if no output then enable Virtulization in BIOS
 
 `00:14.0 USB controller [0c03]: Intel Corporation Cannon Lake PCH USB 3.1 xHCI Host Controller [8086:a36d] (rev 10)`
 
-## Add the second number to grub.
+## Add the second number to grub. [8086:a36d]
 
 `sudo nano /etc/default/grub`
 
-`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash iommu=pt intel_iommu=on vfio-pci.ids=8086:a36d"`
+`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash iommu=pt intel_iommu=on vfio-pci.ids=XXXX:XXXX"`
 
 ## Update GRUB
 
