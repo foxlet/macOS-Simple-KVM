@@ -17,3 +17,13 @@ _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-
 
  - Edit that to your preferred screen resolution.
  - Some odd/intermediate resolutions like 1366×768 may not work well. Try to stick to more common 16:9, 16:10, and 4:3 form factors.
+ 
+### Linux based alternative
+ 
+ > This is especially helpful, if you broke something, while trying to change the resolution using the steps above
+
+1. Install `libguestfs-tools` using your package manager
+2. Mount the first partition in the ESP image using `sudo guestmount -a ESP.qcow2 -m /dev/sda1 /mnt`
+3. Open the directory (you'll probably need to use your root user for this). `cd /mnt`
+4. Navigate into the `Clover` directory (like above) and edit `config.plist`
+5. Unmount the image using `sudo guestunmount /mnt`
