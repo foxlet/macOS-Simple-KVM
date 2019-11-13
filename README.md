@@ -10,7 +10,7 @@
 
 if no output then enable virtulization in BIOS
 
-## GET ID USBs
+## Get USB ID's
 
 `lspci -nn | grep -i USB`
 
