@@ -53,8 +53,8 @@ edit `USBmacOS.sh` using the first number from the `lspci -nn | grep -i USB` dev
 ## Make sure you have macOS.qcow2 in the folder.
 
 Download macOS.7z Virtual Disk Image: https://drive.google.com/open?id=1EnbopO0On4vZN7X_8zPr-k4EjCTuoQLM
-
-Alt Link: https://ia801501.us.archive.org/30/items/macOS.7z/macOS.7z
+Mirror: https://mega.nz/#!dJUiUYiB!tnW7nM-oXXfyUs6EPYMLLLzXXauPqlLsB8b_gPs28Dc
+Mirror2: https://mega.nz/#!wNZQQYrQ!CZ_Y8ysRIHYMcbOsh3kEAwi-m4g90mAc7vAV_q1Od8U
 
 ### Extract macOS.7z to your macOS-Simple-KVM folder
 
