@@ -1,6 +1,6 @@
 # checkra1n on Linux via QEMU IOMMU Pass Through USB Controller
 
-## [vmra1n provides clearer instructions](https://github.com/foxlet/vmra1n)
+## [vmra1n provides clearer instructions](https://www.reddit.com/r/jailbreak/comments/dxdmua/tutorial_detailed_guide_on_how_to_run_checkra1n/)
 
 ## Requirements and Clone script (Ubuntu 18.04)
 
