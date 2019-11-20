@@ -58,6 +58,8 @@ Mirror1: https://mega.nz/#!dJUiUYiB!tnW7nM-oXXfyUs6EPYMLLLzXXauPqlLsB8b_gPs28Dc
 
 Mirror2: https://mega.nz/#!wNZQQYrQ!CZ_Y8ysRIHYMcbOsh3kEAwi-m4g90mAc7vAV_q1Od8U
 
+Note: The VM has NO password. If you need a password to run commands go to System Preferences and replace the empty password on the checkra1n account.
+
 ### Extract macOS.7z to your macOS-Simple-KVM folder
 
 ## Execute the Virtual Machine and Pass through PCI USB Controller
