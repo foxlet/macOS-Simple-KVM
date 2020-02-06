@@ -17,3 +17,9 @@ _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-
 
  - Edit that to your preferred screen resolution.
  - Some odd/intermediate resolutions like 1366×768 may not work well. Try to stick to more common 16:9, 16:10, and 4:3 form factors.
+
+2. Shut down the VM, relaunch it using `basic.sh` script and follow the following steps:
+ - Press `Escape` key as soon as the window comes up.
+ - In the interface that comes up, select `Device Manager`->`OVMF Platform Configuration`->`Change Preferred` and select the correct resolution.
+ - Press `F10` to save the changes.
+ - Press `Escape` multiple times to come back to main menu, and then select `Continue` on it.
