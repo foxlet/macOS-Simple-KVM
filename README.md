@@ -39,7 +39,8 @@ and add it to the end of `basic.sh`:
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
 
 ## Step 2a (Virtual Machine Manager)
-If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo ./make.sh --add`.
+1. If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo ./make.sh --add`.
+2. After running the above command, add `MyDisk.qcow2` as storage in the properties of the newly added entry for VM.
 
 ## Step 2b (Headless Systems)
 If you're using a cloud-based/headless system, you can use `headless.sh` to set up a quick VNC instance. Settings are defined through variables as seen in the following example. VNC will start on port `5900` by default.
