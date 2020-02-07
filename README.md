@@ -1,6 +1,6 @@
 # There is now an official Linux Release of checkra1n [https://www.youtube.com/watch?v=AS9JS8PuDw0](https://www.youtube.com/watch?v=AS9JS8PuDw0) download here https://checkra.in/
 
-# checkra1n on Linux via QEMU IOMMU Pass Through USB Controller
+## checkra1n on Linux via QEMU IOMMU Pass Through USB Controller
 
 ## [vmra1n provides clearer instructions](https://www.reddit.com/r/jailbreak/comments/dxdmua/tutorial_detailed_guide_on_how_to_run_checkra1n/)
 
