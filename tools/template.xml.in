@@ -1,113 +1,113 @@
-<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+<domain type="kvm" xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0">
   <name>macOS-Simple-KVM</name>
-  <uuid>d06d502a-904a-4b34-847d-debf1a3d76c7</uuid>
-  <memory unit='KiB'>2097152</memory>
-  <currentMemory unit='KiB'>2097152</currentMemory>
-  <vcpu placement='static'>4</vcpu>
+  <uuid>UUID</uuid>
+  <title>macOS</title>
+  <memory unit="KiB">2097152</memory>
+  <currentMemory unit="KiB">2097152</currentMemory>
+  <vcpu placement="static">4</vcpu>
   <os>
-    <type arch='x86_64' machine='MACHINE'>hvm</type>
-    <loader readonly='yes' type='pflash'>VMDIR/firmware/OVMF_CODE.fd</loader>
+    <type arch="x86_64" machine="MACHINE">hvm</type>
+    <loader readonly="yes" type="pflash">VMDIR/firmware/OVMF_CODE.fd</loader>
     <nvram>VMDIR/firmware/OVMF_VARS-1024x768.fd</nvram>
-    <boot dev='hd'/>
+    <boot dev="hd" />
   </os>
   <features>
-    <acpi/>
-    <apic/>
-    <vmport state='off'/>
+    <acpi />
+    <apic />
+    <vmport state="off" />
   </features>
   <cpu>
-    <topology sockets='1' cores='4' threads='1'/>
+    <topology sockets="1" cores="4" threads="1" />
   </cpu>
-  <clock offset='utc'>
-    <timer name='rtc' tickpolicy='catchup'/>
-    <timer name='pit' tickpolicy='delay'/>
-    <timer name='hpet' present='no'/>
+  <clock offset="utc">
+    <timer name="rtc" tickpolicy="catchup" />
+    <timer name="pit" tickpolicy="delay" />
+    <timer name="hpet" present="no" />
   </clock>
   <on_poweroff>destroy</on_poweroff>
   <on_reboot>restart</on_reboot>
   <on_crash>destroy</on_crash>
   <pm>
-    <suspend-to-mem enabled='no'/>
-    <suspend-to-disk enabled='no'/>
+    <suspend-to-mem enabled="no" />
+    <suspend-to-disk enabled="no" />
   </pm>
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
-    <disk type='file' device='disk'>
-      <driver name='qemu' type='qcow2'/>
-      <source file='VMDIR/ESP.qcow2'/>
-      <target dev='sda' bus='sata'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="qcow2" />
+      <source file="VMDIR/ESP.qcow2" />
+      <target dev="sda" bus="sata" />
+      <address type="drive" controller="0" bus="0" target="0" unit="0" />
     </disk>
-    <disk type='file' device='disk'>
-      <driver name='qemu' type='raw'/>
-      <source file='VMDIR/BaseSystem.img'/>
-      <target dev='sdb' bus='sata'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="raw" />
+      <source file="VMDIR/BaseSystem.img" />
+      <target dev="sdb" bus="sata" />
+      <address type="drive" controller="0" bus="0" target="0" unit="1" />
     </disk>
-    <controller type='usb' index='0' model='ich9-ehci1'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x7'/>
+    <controller type="usb" index="0" model="ich9-ehci1">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x7" />
     </controller>
-    <controller type='usb' index='0' model='ich9-uhci1'>
-      <master startport='0'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x0' multifunction='on'/>
+    <controller type="usb" index="0" model="ich9-uhci1">
+      <master startport="0" />
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x0" multifunction="on" />
     </controller>
-    <controller type='usb' index='0' model='ich9-uhci2'>
-      <master startport='2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x1'/>
+    <controller type="usb" index="0" model="ich9-uhci2">
+      <master startport="2" />
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x1" />
     </controller>
-    <controller type='usb' index='0' model='ich9-uhci3'>
-      <master startport='4'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x2'/>
+    <controller type="usb" index="0" model="ich9-uhci3">
+      <master startport="4" />
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x2" />
     </controller>
-    <controller type='sata' index='0'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
+    <controller type="sata" index="0">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1f" function="0x2" />
     </controller>
-    <interface type='network'>
-      <mac address='52:54:00:92:d4:7b'/>
-      <source network='default'/>
-      <model type='e1000-82545em'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    <interface type="user">
+      <mac address="52:54:00:92:d4:7b" />
+      <model type="e1000-82545em" />
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0" />
     </interface>
-    <serial type='pty'>
-      <target type='isa-serial' port='0'>
-        <model name='isa-serial'/>
+    <serial type="pty">
+      <target type="isa-serial" port="0">
+        <model name="isa-serial" />
       </target>
     </serial>
-    <console type='pty'>
-      <target type='serial' port='0'/>
+    <console type="pty">
+      <target type="serial" port="0" />
     </console>
-    <input type='mouse' bus='usb'>
-      <address type='usb' bus='0' port='1'/>
+    <input type="tablet" bus="usb">
+      <address type="usb" bus="0" port="1"/>
+    </input>   
+    <input type="keyboard" bus="usb">
+      <address type="usb" bus="0" port="2" />
     </input>
-    <input type='keyboard' bus='usb'>
-      <address type='usb' bus='0' port='2'/>
-    </input>
-    <graphics type='spice' autoport='yes'>
-      <listen type='address'/>
-      <image compression='off'/>
+    <graphics type="spice" autoport="yes">
+      <listen type="address" />
+      <image compression="off" />
     </graphics>
-    <sound model='ich9'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
+    <sound model="ich9">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1b" function="0x0" />
     </sound>
     <video>
-      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/>
+      <model type="vga" vram="131072" heads="1" primary="yes"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
     </video>
-    <redirdev bus='usb' type='spicevmc'>
-      <address type='usb' bus='0' port='3'/>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="3" />
     </redirdev>
-    <redirdev bus='usb' type='spicevmc'>
-      <address type='usb' bus='0' port='4'/>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="4" />
     </redirdev>
-    <memballoon model='none'/>
+    <memballoon model="none" />
   </devices>
+  <seclabel type="dynamic" model="selinux" relabel="yes"/>
   <qemu:commandline>
-    <qemu:arg value='-cpu'/>
-    <qemu:arg value='Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check'/>
-    <qemu:arg value='-device'/>
-    <qemu:arg value='isa-applesmc,osk=ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc'/>
-    <qemu:arg value='-smbios'/>
-    <qemu:arg value='type=2'/>
+    <qemu:arg value="-cpu" />
+    <qemu:arg value="Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check" />
+    <qemu:arg value="-device" />
+    <qemu:arg value="isa-applesmc,osk=ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" />
+    <qemu:arg value="-smbios" />
+    <qemu:arg value="type=2" />
   </qemu:commandline>
 </domain>
-

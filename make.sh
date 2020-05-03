@@ -21,7 +21,8 @@ error() {
 }
 
 generate(){
-    sed -e "s|VMDIR|$VMDIR|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
+    UUID=$( cat /proc/sys/kernel/random/uuid )
+    sed -e "s|VMDIR|$VMDIR|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
     echo "$OUT has been generated in $VMDIR"
 }
 
@@ -30,7 +31,7 @@ generate
 argument="$1"
 case $argument in
     -a|--add)
-        sudo virsh define $OUT
+        virsh -c qemu:///session define $OUT
         ;;
     -h|--help)
         print_usage
