@@ -1,7 +1,7 @@
 <domain type="kvm" xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0">
   <name>macOS-Simple-KVM</name>
   <uuid>UUID</uuid>
-  <title>macOS</title>
+  <title>MACOSNAME</title>
   <memory unit="KiB">4194304</memory>
   <currentMemory unit="KiB">4194304</currentMemory>
   <vcpu placement="static">4</vcpu>
@@ -34,7 +34,7 @@
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type="file" device="disk">
-      <driver name="qemu" type="qcow2" />
+      <driver name="qemu" type="qcow2" cache="writeback" io="threads" />
       <source file="BOXESHOME/ESP.qcow2" />
       <target dev="sda" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="0" />
@@ -46,7 +46,7 @@
       <address type="drive" controller="0" bus="0" target="0" unit="1" />
     </disk>
     <disk type="file" device="disk">
-      <driver name="qemu" type="raw" />
+      <driver name="qemu" type="qcow2" cache="writeback" io="threads" />
       <source file="BOXESHOME/macOS.qcow2" />
       <target dev="sdc" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="2" />
@@ -83,21 +83,22 @@
       <target type="serial" port="0" />
     </console>
     <input type="tablet" bus="usb">
-      <address type="usb" bus="0" port="1"/>
-    </input>   
+      <address type="usb" bus="0" port="1" />
+    </input>
     <input type="keyboard" bus="usb">
       <address type="usb" bus="0" port="2" />
     </input>
-    <graphics type="spice" autoport="yes">
-      <listen type="address" />
+    <graphics type="spice">
+      <listen type="none" />
       <image compression="off" />
+      <gl enable="no" />
     </graphics>
     <sound model="ich9">
       <address type="pci" domain="0x0000" bus="0x00" slot="0x1b" function="0x0" />
     </sound>
     <video>
-      <model type="vga" vram="131072" heads="1" primary="yes"/>
-      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
+      <model type="vga" vram="131072" heads="1" primary="yes" />
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0" />
     </video>
     <redirdev bus="usb" type="spicevmc">
       <address type="usb" bus="0" port="3" />
@@ -107,10 +108,10 @@
     </redirdev>
     <memballoon model="none" />
   </devices>
-  <seclabel type="dynamic" model="selinux" relabel="yes"/>
+  <seclabel type="dynamic" model="selinux" relabel="yes" />
   <qemu:commandline>
     <qemu:arg value="-cpu" />
-    <qemu:arg value="Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check" />
+    <qemu:arg value="Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,vmx=on,+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check" />
     <qemu:arg value="-device" />
     <qemu:arg value="isa-applesmc,osk=ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" />
     <qemu:arg value="-smbios" />

@@ -26,8 +26,12 @@ error() {
 }
 
 generate(){
+    NAME="macOS"
+    if [[ -e version ]]; then
+        NAME="$NAME $(cat version)"
+    fi
     UUID=$( cat /proc/sys/kernel/random/uuid )
-    sed -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|QEMUHOME|$QEMU_HOME|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
+    sed -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|MACOSNAME|$NAME|g" -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|QEMUHOME|$QEMU_HOME|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
     echo "$OUT has been generated in $VMDIR"
 }
 
@@ -41,11 +45,12 @@ install(){
     cp -Zfu BaseSystem.img $BOXES_HOME
     cp -Zfu ESP.qcow2 $BOXES_HOME
     echo Coping OVMF_CODE.fd in $QEMU_HOME/firmware/
-    cp firmware/OVMF_CODE.fd $QEMU_HOME/firmware/
+    cp -Zfu firmware/OVMF_CODE.fd $QEMU_HOME/firmware/
     echo Coping OVMF_CODE.fd in $QEMU_HOME/nvram/
-    cp firmware/OVMF_VARS-1024x768.fd $QEMU_HOME/nvram/
-    echo Adding template.xml to GNOME Boxes domain
-    virsh -c qemu:///session define $OUT
+    cp -Zfu firmware/OVMF_VARS-1024x768.fd $QEMU_HOME/nvram/
+    echo Copy template.xml to $QEMU_HOME
+    cp -Zfu template.xml $QEMU_HOME/macOS-Simple-KVM.xml
+    virsh -c qemu:///session define $QEMU_HOME/macOS-Simple-KVM.xml
 }
 
 generate
