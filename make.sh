@@ -8,7 +8,9 @@ QEMU_HOME="$HOME/.config/libvirt/qemu"
 BOXES_HOME="$HOME/.local/share/gnome-boxes/images"
 MACHINE="$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | grep -Eoe ".*-[0-9.]+" | sort -rV | head -1)"
 OUT="template.xml"
-SIZE=60G
+DEFAULT_STORAGE=60G
+DEFAULT_MEMORY=2
+MEMORY_MULTIPLIER=1048576
 
 print_usage() {
     echo
@@ -27,6 +29,13 @@ error() {
 
 generate(){
     NAME="macOS"
+
+    read -p "How much RAM? [$DEFAULT_MEMORY]: " MEMORY
+    ## Use default 2GB memory if no memory provided
+    if [[ -n $MEMORY ]]; then MEMORY=$(($MEMORY_MULTIPLIER*$MEMORY)); else MEMORY=$(($MEMORY_MULTIPLIER*$DEFAULT_MEMORY)); fi
+
+    ## TODO do some input validation
+
     if [[ -e version ]]; then
         NAME="$NAME $(cat version)"
     fi
@@ -39,7 +48,14 @@ install(){
     echo Creating direcories $QEMU_HOME/firmware and $BOXES_HOME
     mkdir -p $BOXES_HOME
     mkdir -p $QEMU_HOME/firmware
-    echo Creating system disk $BOXES_HOME/macOS.qcow2 of size $SIZE
+
+    read -p "How much storage? [$DEFAULT_STORAGE]: " STORAGE
+    ## Use default 30G storage if no storage provided
+    if [[ -z $STORAGE ]]; then STORAGE=$DEFAULT_STORAGE; fi
+
+    ## TODO do some input validation
+
+    echo Creating system disk $BOXES_HOME/macOS.qcow2 of size $STORAGE
     qemu-img create -f qcow2 $BOXES_HOME/macOS.qcow2 $SIZE
     echo Coping BaseSystem.img and ESP.qcow2 in $BOXES_HOME
     cp -Zfu BaseSystem.img $BOXES_HOME
