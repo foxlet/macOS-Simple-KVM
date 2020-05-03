@@ -4,14 +4,19 @@
 # by Foxlet <foxlet@furcode.co>
 
 VMDIR=$PWD
+QEMU_HOME="$HOME/.config/libvirt/qemu"
+BOXES_HOME="$HOME/.local/share/gnome-boxes/images"
 MACHINE="$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | grep -Eoe ".*-[0-9.]+" | sort -rV | head -1)"
 OUT="template.xml"
+SIZE=60G
 
 print_usage() {
     echo
     echo "Usage: $0"
     echo
-    echo " -a, --add   Add XML to virsh (uses sudo)."
+    echo " -a, --add       Add XML to virsh (uses sudo)."
+    echo
+    echo " -i, --install   Install virtual machine in GNOME Boxes."
     echo
 }
 
@@ -22,16 +27,33 @@ error() {
 
 generate(){
     UUID=$( cat /proc/sys/kernel/random/uuid )
-    sed -e "s|VMDIR|$VMDIR|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
+    sed -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|QEMUHOME|$QEMU_HOME|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
     echo "$OUT has been generated in $VMDIR"
+}
+
+install(){
+    echo Creating direcories $QEMU_HOME/firmware and $BOXES_HOME
+    mkdir -p $BOXES_HOME
+    mkdir -p $QEMU_HOME/firmware
+    echo Creating system disk $BOXES_HOME/macOS.qcow2 of size $SIZE
+    qemu-img create -f qcow2 $BOXES_HOME/macOS.qcow2 $SIZE
+    echo Coping BaseSystem.img and ESP.qcow2 in $BOXES_HOME
+    cp -Zfu BaseSystem.img $BOXES_HOME
+    cp -Zfu ESP.qcow2 $BOXES_HOME
+    echo Coping OVMF_CODE.fd in $QEMU_HOME/firmware/
+    cp firmware/OVMF_CODE.fd $QEMU_HOME/firmware/
+    echo Coping OVMF_CODE.fd in $QEMU_HOME/nvram/
+    cp firmware/OVMF_VARS-1024x768.fd $QEMU_HOME/nvram/
+    echo Adding template.xml to GNOME Boxes domain
+    virsh -c qemu:///session define $OUT
 }
 
 generate
 
 argument="$1"
 case $argument in
-    -a|--add)
-        virsh -c qemu:///session define $OUT
+    -i|--install)
+        install
         ;;
     -h|--help)
         print_usage

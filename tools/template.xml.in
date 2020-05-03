@@ -2,13 +2,13 @@
   <name>macOS-Simple-KVM</name>
   <uuid>UUID</uuid>
   <title>macOS</title>
-  <memory unit="KiB">2097152</memory>
-  <currentMemory unit="KiB">2097152</currentMemory>
+  <memory unit="KiB">4194304</memory>
+  <currentMemory unit="KiB">4194304</currentMemory>
   <vcpu placement="static">4</vcpu>
   <os>
     <type arch="x86_64" machine="MACHINE">hvm</type>
-    <loader readonly="yes" type="pflash">VMDIR/firmware/OVMF_CODE.fd</loader>
-    <nvram>VMDIR/firmware/OVMF_VARS-1024x768.fd</nvram>
+    <loader readonly="yes" type="pflash">QEMUHOME/firmware/OVMF_CODE.fd</loader>
+    <nvram>QEMUHOME/nvram/OVMF_VARS-1024x768.fd</nvram>
     <boot dev="hd" />
   </os>
   <features>
@@ -35,15 +35,21 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2" />
-      <source file="VMDIR/ESP.qcow2" />
+      <source file="BOXESHOME/ESP.qcow2" />
       <target dev="sda" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="0" />
     </disk>
     <disk type="file" device="disk">
       <driver name="qemu" type="raw" />
-      <source file="VMDIR/BaseSystem.img" />
+      <source file="BOXESHOME/BaseSystem.img" />
       <target dev="sdb" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="1" />
+    </disk>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="raw" />
+      <source file="BOXESHOME/macOS.img" />
+      <target dev="sdb" bus="sata" />
+      <address type="drive" controller="0" bus="0" target="0" unit="2" />
     </disk>
     <controller type="usb" index="0" model="ich9-ehci1">
       <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x7" />
