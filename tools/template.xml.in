@@ -47,8 +47,8 @@
     </disk>
     <disk type="file" device="disk">
       <driver name="qemu" type="raw" />
-      <source file="BOXESHOME/macOS.img" />
-      <target dev="sdb" bus="sata" />
+      <source file="BOXESHOME/macOS.qcow2" />
+      <target dev="sdc" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="2" />
     </disk>
     <controller type="usb" index="0" model="ich9-ehci1">
