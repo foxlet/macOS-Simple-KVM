@@ -7,7 +7,9 @@ VMDIR=$PWD
 QEMU_HOME="$HOME/.config/libvirt/qemu"
 BOXES_HOME="$HOME/.local/share/gnome-boxes/images"
 MACHINE="$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | grep -Eoe ".*-[0-9.]+" | sort -rV | head -1)"
+DATA="data"
 OUT="template.xml"
+DOMAIN_NAME=macOS-Simple-KVM
 DEFAULT_STORAGE=60G
 DEFAULT_MEMORY=2
 MEMORY_MULTIPLIER=1048576
@@ -36,12 +38,12 @@ generate(){
 
     ## TODO do some input validation
 
-    if [[ -e version ]]; then
-        NAME="$NAME $(cat version)"
+    if [[ -e $DATA/version ]]; then
+        NAME="$NAME $(cat $DATA/version)"
     fi
     UUID=$( cat /proc/sys/kernel/random/uuid )
-    sed -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|MACOSNAME|$NAME|g" -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|QEMUHOME|$QEMU_HOME|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
-    echo "$OUT has been generated in $VMDIR"
+    sed -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|MACOSNAME|$NAME|g" -e "s|BOXESHOME|$BOXES_HOME|g" -e "s|QEMUHOME|$QEMU_HOME|g" -e "s|UUID|$UUID|g" -e "s|MACHINE|$MACHINE|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $DATA/$OUT
+    echo "$OUT has been generated in $VMDIR$/$DATA"
 }
 
 install(){
@@ -64,9 +66,9 @@ install(){
     cp -Zfu firmware/OVMF_CODE.fd $QEMU_HOME/firmware/
     echo Coping OVMF_CODE.fd in $QEMU_HOME/nvram/
     cp -Zfu firmware/OVMF_VARS-1024x768.fd $QEMU_HOME/nvram/
-    echo Copy template.xml to $QEMU_HOME
-    cp -Zfu template.xml $QEMU_HOME/macOS-Simple-KVM.xml
-    virsh -c qemu:///session define $QEMU_HOME/macOS-Simple-KVM.xml
+    echo Copy $OUT to $QEMU_HOME
+    cp -Zfu $DATA/$OUT $QEMU_HOME/$DOMAIN_NAME.xml
+    virsh -c qemu:///session define $QEMU_HOME/$DOMAIN_NAME.xml
 }
 
 generate
