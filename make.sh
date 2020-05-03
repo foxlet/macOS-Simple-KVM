@@ -50,9 +50,7 @@ install(){
     mkdir -p $BOXES_HOME
     mkdir -p $QEMU_HOME/firmware
 
-    read -p "How much storage? [$DEFAULT_STORAGE]: " STORAGE
-    ## Use default 60G storage if no storage provided
-    if [[ -z $STORAGE ]]; then STORAGE=$DEFAULT_STORAGE; fi
+    
 
     ## TODO do some input validation
 
@@ -60,6 +58,9 @@ install(){
     if [[ -e $BOXES_HOME/macOS.qcow2 ]]; then
         echo "macOS.qcow2 already exist, skipping"
     else
+        read -p "How much storage? [$DEFAULT_STORAGE]: " STORAGE
+        ## Use default 60G storage if no storage provided
+        if [[ -z $STORAGE ]]; then STORAGE=$DEFAULT_STORAGE; fi
         qemu-img create -f qcow2 $BOXES_HOME/macOS.qcow2 $STORAGE
     fi
     echo Coping BaseSystem.img and ESP.qcow2 in $BOXES_HOME
