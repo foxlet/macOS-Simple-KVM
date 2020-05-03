@@ -40,14 +40,14 @@
       <address type="drive" controller="0" bus="0" target="0" unit="0" />
     </disk>
     <disk type="file" device="disk">
-      <driver name="qemu" type="raw" />
-      <source file="BOXESHOME/BaseSystem.img" />
+      <driver name="qemu" type="qcow2" cache="writeback" io="threads" />
+      <source file="BOXESHOME/macOS.qcow2" />
       <target dev="sdb" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="1" />
     </disk>
     <disk type="file" device="disk">
-      <driver name="qemu" type="qcow2" cache="writeback" io="threads" />
-      <source file="BOXESHOME/macOS.qcow2" />
+      <driver name="qemu" type="raw" />
+      <source file="BOXESHOME/BaseSystem.img" />
       <target dev="sdc" bus="sata" />
       <address type="drive" controller="0" bus="0" target="0" unit="2" />
     </disk>
