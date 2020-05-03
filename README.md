@@ -38,8 +38,8 @@ and add it to the end of `basic.sh`:
 
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
 
-## Step 2a (Virtual Machine Manager)
-1. If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo ./make.sh --add`.
+## Step 2a (Virtual Machine Manager and Gnome Boxes)
+1. If instead of QEMU, you'd like to import the setup into Virt-Manager or Gnome Boxes for further configuration, just run `./make.sh --add`.
 2. After running the above command, add `MyDisk.qcow2` as storage in the properties of the newly added entry for VM.
 
 ## Step 2b (Headless Systems)
