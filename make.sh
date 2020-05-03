@@ -57,7 +57,11 @@ install(){
     ## TODO do some input validation
 
     echo Creating system disk $BOXES_HOME/macOS.qcow2 of size $STORAGE
-    qemu-img create -f qcow2 $BOXES_HOME/macOS.qcow2 $STORAGE
+    if [[ -e $BOXES_HOME/macOS.qcow2 ]]; then
+        echo "macOS.qcow2 already exist, skipping"
+    else
+        qemu-img create -f qcow2 $BOXES_HOME/macOS.qcow2 $STORAGE
+    fi
     echo Coping BaseSystem.img and ESP.qcow2 in $BOXES_HOME
     cp -Zfu BaseSystem.img $BOXES_HOME
     cp -Zfu ESP.qcow2 $BOXES_HOME
