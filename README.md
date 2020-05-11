@@ -17,7 +17,7 @@ sudo dnf install qemu qemu-img python3 python3-pip # for Fedora
 ```
 
 ## Step 1
-Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
+Run `sudo jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
 ```
 ./jumpstart.sh --mojave
 ```
