@@ -22,6 +22,7 @@ Run `jumpstart.sh` to download installation media for macOS (internet required).
 ./jumpstart.sh --mojave
 ```
 > Note: You can skip this if you already have `BaseSystem.img` downloaded. If you have `BaseSystem.dmg`, you will need to convert it with the `dmg2img` tool.
+> Note: You should stick with `--high-sierra` if you are using an **NVDIDA GPU that's not natively supported by macOS**, as there are no drivers for any macOS version above high-sierra and therefore there isn't any hardware acceleration.
 
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
