@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """fetch-macos.py: Fetches macOS products from Apple's SoftwareUpdate service."""
 
