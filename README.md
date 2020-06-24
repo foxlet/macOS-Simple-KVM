@@ -17,6 +17,8 @@ sudo dnf install qemu qemu-img python3 python3-pip # for Fedora
 sudo eopkg install qemu python3 # for Solus OS
 ```
 
+Extracting `qemu` on Solus OS may take up to a few minutes, so please be patient.
+
 ## Step 1
 Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
 ```
