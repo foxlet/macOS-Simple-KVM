@@ -33,7 +33,7 @@ case $argument in
         "$TOOLS/FetchMacOS/fetch.sh" -v 10.14 -k BaseSystem || exit 1;
         ;;
     -b|--big-sur)
-        "$TOOLS/FetchMacOS/fetch.sh" -v 10.16 -c DeveloperSeed -p 001-18401-003 || exit 1;
+        "$TOOLS/FetchMacOS/fetch.sh" -v 10.16 -c DeveloperSeed -p 001-23553-002 || exit 1;
         ;;
     -c|--catalina|*)
         "$TOOLS/FetchMacOS/fetch.sh" -v 10.15 -k BaseSystem || exit 1;
