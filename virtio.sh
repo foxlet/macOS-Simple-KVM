@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ 
 OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VMDIR=$PWD
 OVMF=$VMDIR/firmware
