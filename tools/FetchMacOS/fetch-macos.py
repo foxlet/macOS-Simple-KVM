@@ -66,7 +66,7 @@ class Filesystem:
 class SoftwareService:
     # macOS 10.15 is available in 4 different catalogs from SoftwareScan
     catalogs = {
-                "10.16": {
+                "11.0": {
                     "CustomerSeed":"https://swscan.apple.com/content/catalogs/others/index-10.16customerseed-10.16-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
                     "DeveloperSeed":"https://swscan.apple.com/content/catalogs/others/index-10.16seed-10.16-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
                     "PublicSeed":"https://swscan.apple.com/content/catalogs/others/index-10.16beta-10.16-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
