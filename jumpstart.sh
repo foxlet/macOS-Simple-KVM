@@ -38,6 +38,9 @@ case $argument in
     -c|--catalina|*)
         "$TOOLS/FetchMacOS/fetch.sh" -v 10.15 -k BaseSystem || exit 1;
         ;;
+    -b|--bigsur)
+        "$TOOLS/FetchMacOS/fetch.sh" -v 10.16 || exit 1;
+        ;;
 esac
 
 "$TOOLS/dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"
