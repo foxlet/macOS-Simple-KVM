@@ -15,6 +15,7 @@ sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
 sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
 sudo dnf install qemu qemu-img python3 python3-pip # for Fedora
 sudo emerge -a qemu python:3.4 pip # for Gentoo
+nix-shell # for Nix users
 ```
 
 ## Step 1
