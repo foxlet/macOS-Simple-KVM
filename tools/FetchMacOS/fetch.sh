@@ -7,6 +7,12 @@ set +x;
 SCRIPTDIR="$(dirname "$0")";
 cd "$SCRIPTDIR"
 
+if [ -x "$(command -v nix-shell)" ]; then
+    echo "Nix detected, using nix-shell for dependencies..."
+    nix-shell --pure --run "python fetch-macos.py $*"
+    exit
+fi
+
 initpip() {
     if [ -x "$(command -v easy_install)" ]; then
         sudo easy_install pip
