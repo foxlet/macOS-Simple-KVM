@@ -38,4 +38,10 @@ esac
 
 "$TOOLS/FetchMacOS/fetch.sh" -v $version || exit 1
 
-"$TOOLS/dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"
+if [ -x "$(command -v dmg2img)" ]; then
+    dmg2img="dmg2img"
+else
+    dmg2img="$TOOLS/dmg2img"
+fi
+
+"$dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"
