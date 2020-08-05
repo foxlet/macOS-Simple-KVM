@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # debug.sh: Checks common virtualization programs and modules.
 # by Foxlet <foxlet@furcode.co>
