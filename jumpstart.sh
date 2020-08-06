@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # jumpstart.sh: Fetches BaseSystem and converts it to a viable format.
 # by Foxlet <foxlet@furcode.co>
@@ -26,14 +26,22 @@ case $argument in
         print_usage
         ;;
     -s|--high-sierra)
-        "$TOOLS/FetchMacOS/fetch.sh" -v 10.13 || exit 1;
+        version=10.13
         ;;
     -m|--mojave)
-        "$TOOLS/FetchMacOS/fetch.sh" -v 10.14 || exit 1;
+        version=10.14
         ;;
     -c|--catalina|*)
-        "$TOOLS/FetchMacOS/fetch.sh" -v 10.15 || exit 1;
+        version=10.15
         ;;
 esac
 
-"$TOOLS/dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"
+"$TOOLS/FetchMacOS/fetch.sh" -v $version || exit 1
+
+if [ -x "$(command -v dmg2img)" ]; then
+    dmg2img="dmg2img"
+else
+    dmg2img="$TOOLS/dmg2img"
+fi
+
+"$dmg2img" "$TOOLS/FetchMacOS/BaseSystem/BaseSystem.dmg" "$PWD/BaseSystem.img"

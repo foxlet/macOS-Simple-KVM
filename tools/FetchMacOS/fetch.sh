@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # fetch.sh: Run fetch-macos.py with safety checks
 # by Foxlet <foxlet@furcode.co>
@@ -6,6 +6,12 @@
 set +x;
 SCRIPTDIR="$(dirname "$0")";
 cd "$SCRIPTDIR"
+
+if [ -x "$(command -v nix-shell)" ]; then
+    echo "Nix detected, using nix-shell for dependencies..."
+    nix-shell --pure --run "python fetch-macos.py $*"
+    exit
+fi
 
 initpip() {
     if [ -x "$(command -v easy_install)" ]; then

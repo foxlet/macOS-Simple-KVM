@@ -31,7 +31,7 @@
     <suspend-to-disk enabled='no'/>
   </pm>
   <devices>
-    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <emulator>EMULATOR</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
       <source file='VMDIR/ESP.qcow2'/>

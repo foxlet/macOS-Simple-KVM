@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # make.sh: Generate customized libvirt XML.
 # by Foxlet <foxlet@furcode.co>
@@ -6,6 +6,14 @@
 VMDIR=$PWD
 MACHINE="$(qemu-system-x86_64 --machine help | grep q35 | cut -d" " -f1 | grep -Eoe ".*-[0-9.]+" | sort -rV | head -1)"
 OUT="template.xml"
+
+NIX_EMULATOR="/run/libvirt/nix-emulators/qemu-system-x86_64"
+
+if [ -e $NIX_EMULATOR ]; then
+   EMULATOR=$NIX_EMULATOR
+else
+   EMULATOR="/usr/bin/qemu-system-x86_64"
+fi
 
 print_usage() {
     echo
@@ -21,7 +29,7 @@ error() {
 }
 
 generate(){
-    sed -e "s|VMDIR|$VMDIR|g" -e "s|MACHINE|$MACHINE|g" tools/template.xml.in > $OUT
+    sed -e "s|VMDIR|$VMDIR|g" -e "s|MACHINE|$MACHINE|g" -e "s|EMULATOR|$EMULATOR|g" tools/template.xml.in > $OUT
     echo "$OUT has been generated in $VMDIR"
 }
 
