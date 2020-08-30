@@ -76,8 +76,8 @@
     <console type='pty'>
       <target type='serial' port='0'/>
     </console>
-    <input type="tablet" bus="usb">
-      <address type="usb" bus="0" port="1"/>
+    <input type='tablet' bus='usb'>
+      <address type='usb' bus='0' port='1'/>
     </input>
     <input type='keyboard' bus='usb'>
       <address type='usb' bus='0' port='2'/>
