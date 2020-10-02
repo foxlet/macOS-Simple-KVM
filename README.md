@@ -25,16 +25,22 @@ Run `jumpstart.sh` to download installation media for macOS (internet required).
 > Note: You can skip this if you already have `BaseSystem.img` downloaded. If you have `BaseSystem.dmg`, you will need to convert it with the `dmg2img` tool.
 
 ## Step 2
-Create an empty hard disk using `qemu-img`, changing the name and size to preference:
+Run `createdisk.sh` to create an empty hard disk using `qemu-img`. You can change the name, size, and type to preference. The default (if run with no flags) is 64G file named `MyDisk.qcow2`.
+```
+./createdisk.sh -s 64G -b MyDisk -f cow2
+```
+
+Or manually create the image with `qemu-img`, changing the name and size to preference:
 ```
 qemu-img create -f qcow2 MyDisk.qcow2 64G
 ```
 
-and add it to the end of `basic.sh`:
+You will need to add the following configuration to the end `basic.sh`, (Note: this is optionally done automatically by the `createdisk.sh` script):
 ```
     -drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
     -device ide-hd,bus=sata.4,drive=SystemDisk \
 ```
+
 > Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` for VNC support.
 
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
