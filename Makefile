@@ -42,7 +42,7 @@ docker run --rm \
     -i $(IMAGE)
 endef
 
-# Append audio and hard disk device configuratiom
+# Append audio and hard disk device configuration
 define BASIC_SH
 $(file < $(SELF)/basic.sh)
 -audiodev driver=pa,id=sound1,server=localhost \
