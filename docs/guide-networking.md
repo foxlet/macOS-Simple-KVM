@@ -1,3 +1,14 @@
+Guide to Port Forwarding
+===========================
+Useful to setup a port forward without messing around with bridge networks.
+
+## Edit `basic.sh` or `headless.sh`
+You'll have to edit the following line `-netdev user,id=net0` in `basic.sh` or `headless.sh` to match the line below. *Replace `PORT` with a number.
+
+```
+    -netdev user,id=net0,hostfwd=tcp::PORT-:PORT \
+```
+
 Guide to Bridged Networking
 ===========================
 
