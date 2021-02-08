@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # make.sh: Generate customized libvirt XML.
 # by Foxlet <foxlet@furcode.co>
