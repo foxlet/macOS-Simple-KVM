@@ -47,6 +47,6 @@ You will need to attach the cards using the BDF IDs for the audio and video cont
 ```
     -vga none \
     -device pcie-root-port,bus=pcie.0,multifunction=on,port=1,chassis=1,id=port.1 \
-    -device vfio-pci,host=26:00.0,bus=port.1,multifunction=on,romfile=/path/to/card.rom \
+    -device vfio-pci,host=26:00.0,bus=port.1,multifunction=on,x-vga=on,romfile=/path/to/card.rom \
     -device vfio-pci,host=26:00.1,bus=port.1 \
 ```
