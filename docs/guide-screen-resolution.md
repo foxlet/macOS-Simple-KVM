@@ -1,4 +1,10 @@
-## How to increase screen resolution for macOS-Simple-KVM
+# How to increase screen resolution for macOS-Simple-KVM
+
+Some odd/intermediate resolutions like 1366×768 may not work well. Try to stick to more common 16:9, 16:10, and 4:3 form factors.
+
+# Step 1
+
+## Manual (using text editor)
 
 _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-tutorial-part-1-the-basics/) and [urcomputertechnics.com](http://urcomputertechnics.com/how-to-mount-efi-partition-on-macos-mojave/) for the tips.)_
 
@@ -15,11 +21,27 @@ _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-
 <string>1280x720</string>
 ```````````````````
 
- - Edit that to your preferred screen resolution.
- - Some odd/intermediate resolutions like 1366×768 may not work well. Try to stick to more common 16:9, 16:10, and 4:3 form factors.
+4. Edit that to your preferred screen resolution.
+5. Shutdown the VM
 
-2. Shut down the VM, relaunch it using `basic.sh` script and follow the following steps:
- - Press `Escape` key as soon as the window comes up.
+## Using Clover Configruator
+
+1. Open Clover Configurator
+2. Mount the **EFI** partition (Sidepanel -> "Mount EFI")
+3. Load current clover config.plist (Sidepanel bottom, "load config" button -> navigate to `EFI/CLOVER/config.plist`)
+4. Change screen resolution in GUI settings to preferred value (Sidepanel -> "Gui")
+5. Save clover config.plist (Sidepanel bottom, "save config" button -> "save")
+6. Shutdown the VM
+
+# Step 2 
+
+Depending on your environment (plain qemu/virt-manager) mind or skip the steps annotated with QEMU or VIRT. Steps with no annotation must be performed either way.
+ - QEMU: Launch the VM using `basic.sh` script
+ - VIRT: Remove the USB Keyboard from the VM
+ - VIRT: Launch the VM
+ - Press `Escape` key as soon as the window comes up/machine is starting.
  - In the interface that comes up, select `Device Manager`->`OVMF Platform Configuration`->`Change Preferred` and select the correct resolution.
  - Press `F10` to save the changes.
  - Press `Escape` multiple times to come back to main menu, and then select `Continue` on it.
+ - VIRT: Readd the USB Keyboard to the VM
+ - VIRT: It might be neccessary to perform a reboot to get the screen running properly
