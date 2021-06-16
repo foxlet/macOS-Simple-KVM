@@ -51,6 +51,10 @@ HEADLESS=1 MEM=1G CPUS=2 SYSTEM_DISK=MyDisk.qcow2 ./headless.sh
 
 ## Step 3
 
+On the Clover screen, press [Enter] to boot up the macOS VM. You need to format the QEMU disk partition (the one you created with `qemu-img`) before installing the macOS, otherwise macOS won't know how to use the partition. Choose [Disk Utility], then select the QEMU disk that is larger (e.g. the 64 GB one if you were following these instructions exactly). Choose [Erase] and then give your disk a new name. Once it's done, exit the Disk Utility and choose [Install macOS].
+
+## Step 4
+
 You're done!
 
 To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
