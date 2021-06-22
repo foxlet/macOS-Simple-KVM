@@ -36,7 +36,7 @@ qemu-system-x86_64 \
     -cpu Penryn,vendor=GenuineIntel,kvm=on,+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc \
     -device isa-applesmc,osk="$OSK" \
     -smbios type=2 \
-    -drive if=pflash,format=raw,readonly,file="$OVMF/OVMF_CODE.fd" \
+    -drive if=pflash,format=raw,readonly=on,file="$OVMF/OVMF_CODE.fd" \
     -drive if=pflash,format=raw,file="$OVMF/OVMF_VARS-1024x768.fd" \
     -vga qxl \
     -usb -device usb-kbd -device usb-tablet \
