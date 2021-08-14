@@ -11,7 +11,7 @@ print_usage() {
     echo
     echo "Usage: $0"
     echo
-    echo " -a, --add   Add XML to virsh (uses sudo)."
+    echo " -a, --add   Add XML to virsh (uses doas)."
     echo
 }
 
@@ -30,7 +30,7 @@ generate
 argument="$1"
 case $argument in
     -a|--add)
-        sudo virsh define $OUT
+        doas virsh define $OUT
         ;;
     -h|--help)
         print_usage
