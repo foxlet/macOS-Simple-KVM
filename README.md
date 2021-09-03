@@ -46,8 +46,14 @@ Then run `basic.sh` to start the machine and install macOS. Remember to partitio
 ## Step 2b (Headless Systems)
 If you're using a cloud-based/headless system, you can use `headless.sh` to set up a quick VNC instance. Settings are defined through variables as seen in the following example. VNC will start on port `5900` by default.
 ```
-HEADLESS=1 MEM=1G CPUS=2 SYSTEM_DISK=MyDisk.qcow2 ./headless.sh
+HEADLESS=1 MEM=7G CPUS=2 SYSTEM_DISK=MyDisk.qcow2 ./headless.sh
 ```
+
+You might change `MEM` and `CPUS` values to what would be appropriate for your cloud server.
+
+When you run the script, you will see output [like this](https://user-images.githubusercontent.com/5187404/122309990-37cc9b80-cec4-11eb-95ae-e6f3160a2791.png). That means you're ready to move on, and now there's a VNC server set up by the script, and you can access your macOS VM that way.
+
+By default, the VNC server for the macOS VM will run on port 5900. (If you already have a VNC server for your cloud system, this would be *in addition to* that one.) If you've restricted to only SSH access, then you would want to forward the port to your localhost so you could connect: `ssh -L 5900:127.0.0.1:5900 -C -N -l your_user your_ssh`.
 
 ## Step 3
 
