@@ -49,7 +49,7 @@ If you're using a cloud-based/headless system, you can use `headless.sh` to set 
 HEADLESS=1 MEM=7G CPUS=2 SYSTEM_DISK=MyDisk.qcow2 ./headless.sh
 ```
 
-You might `MEM` and `CPUS` values to what would be appropriate for your cloud server.
+You might change `MEM` and `CPUS` values to what would be appropriate for your cloud server.
 
 When you run the script, you will see output [like this](https://user-images.githubusercontent.com/5187404/122309990-37cc9b80-cec4-11eb-95ae-e6f3160a2791.png). That means you're ready to move on, and now there's a VNC server set up by the script, and you can access your macOS VM that way.
 
