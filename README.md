@@ -24,9 +24,12 @@ sudo emerge -a qemu python:3.4 pip # for Gentoo
 ## Step 1
 Run `fetch-macOS-v2.py` to download installation media for macOS (internet required).
 ```
-./jumpstart.sh --mojave
+./fetch-macOS-v2.py
 ```
-> Note: You can skip this if you already have `BaseSystem.img` downloaded. If you have `BaseSystem.dmg`, you will need to convert it with the `dmg2img` tool.
+Then run 
+```
+qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
+```
 
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
