@@ -31,13 +31,12 @@ Run `jumpstart.sh` to download installation media for macOS (internet required).
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
 ```
-qemu-img create -f qcow2 MyDisk.qcow2 64G
+qemu-img create -f qcow2 macOS.qcow2 64G
 ```
 
-and add it to the end of `basic.sh`:
+if you change the drive name, change the line below according to the new name in `basic.sh`:
 ```
-    -drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
-    -device ide-hd,bus=sata.4,drive=SystemDisk \
+    -drive id=SystemDisk,if=none,file=macOS.qcow2 \
 ```
 > Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` for VNC support.
 
