@@ -17,6 +17,10 @@ sudo dnf install qemu qemu-img python3 python3-pip # for Fedora
 sudo emerge -a qemu python:3.4 pip # for Gentoo
 ```
 
+## OneClick Method
+Simply run `sudo ./run.sh` to make the VM. Monterey may not work.
+Once the VM boots up, just hit enter even if you don't see anything (do this every boot) Then format the biggest drive as macOS Extended Journaled, Then go to reinstall macOS and install it to the newly formatted hard drive.
+
 ## Step 1
 Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
 ```
