@@ -6,7 +6,7 @@ By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Fin
 New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
 ## OneClick Method
-run this command
+Run these commands
 ```
 chmod u+x setip.sh
 chmod +x fetch-macOS-v2.py
