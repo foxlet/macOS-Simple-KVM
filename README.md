@@ -6,8 +6,10 @@ By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Fin
 New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
 ## OneClick Method
-Simply run `sudo ./run.sh` to make the VM. Monterey may not work.
+Simply run `sudo ./setup.sh` to make the VM. Monterey may not work.
 Once the VM boots up, just hit enter even if you don't see anything (do this every boot) Then format the biggest drive as macOS Extended Journaled, Then go to reinstall macOS and install it to the newly formatted hard drive.
+
+Once installed, run run ./basic.sh to boot up the VM again. Do not run ./setup.sh twice if the install was succesful, as it will redownload the image and that is not needed.
 
 ## You're done!
 
