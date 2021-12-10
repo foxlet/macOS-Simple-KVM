@@ -8,7 +8,7 @@ New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 ## OneClick Method
 Run these commands
 ```
-chmod u+x setip.sh
+chmod u+x setup.sh
 chmod +x fetch-macOS-v2.py
 ```
 Then run `sudo ./setup.sh` to make the VM. Monterey may not work.
