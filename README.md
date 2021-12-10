@@ -9,6 +9,12 @@ New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 Simply run `sudo ./run.sh` to make the VM. Monterey may not work.
 Once the VM boots up, just hit enter even if you don't see anything (do this every boot) Then format the biggest drive as macOS Extended Journaled, Then go to reinstall macOS and install it to the newly formatted hard drive.
 
+## You're done!
+
+To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
+
+## Manual method (for other distros that aren't debian based)
+
 ## Getting Started
 You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
 
