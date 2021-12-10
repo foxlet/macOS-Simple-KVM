@@ -22,7 +22,7 @@ sudo emerge -a qemu python:3.4 pip # for Gentoo
 ```
 
 ## Step 1
-Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
+Run `fetch-macOS-v2.py` to download installation media for macOS (internet required).
 ```
 ./jumpstart.sh --mojave
 ```
@@ -40,11 +40,11 @@ if you change the drive name, change the line below according to the new name in
 ```
 > Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` for VNC support.
 
-Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first!
+Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first! (macOS extended journaled)
 
 ## Step 2a (Virtual Machine Manager)
 1. If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo ./make.sh --add`.
-2. After running the above command, add `MyDisk.qcow2` as storage in the properties of the newly added entry for VM.
+2. After running the above command, add `macOS.qcow2` as storage in the properties of the newly added entry for VM.
 
 ## Step 2b (Headless Systems)
 If you're using a cloud-based/headless system, you can use `headless.sh` to set up a quick VNC instance. Settings are defined through variables as seen in the following example. VNC will start on port `5900` by default.
