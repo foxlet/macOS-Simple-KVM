@@ -49,7 +49,7 @@ if you change the drive name, change the line below according to the new name in
 ```
     -drive id=SystemDisk,if=none,file=macOS.qcow2 \
 ```
-> Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` for VNC support.
+> Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` to the end of basic.sh for VNC support.
 
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first! (macOS extended journaled)
 
