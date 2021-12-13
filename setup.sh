@@ -1,9 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install qemu-system qemu-utils python3 python3-pip  # for Ubuntu, Debian, Mint, and PopOS.
-
-sudo apt-get install qemu uml-utilities virt-manager git \
-    wget libguestfs-tools p7zip-full make -y
+sudo apt-get install qemu-system qemu-utils python3 python3-pip -y  # for Ubuntu, Debian, Mint, and PopOS.
 
 ./fetch-macOS-v2.py
 
