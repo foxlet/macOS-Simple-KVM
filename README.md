@@ -6,10 +6,14 @@ By [@FoxletFox](https://twitter.com/foxletfox), and the help of many others. Fin
 New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
 ## OneClick Method
-Run `sudo ./setup.sh` to make the VM. Monterey may not work.
-Once the VM boots up, just hit enter even if you don't see anything (do this every boot) Then format the biggest drive as macOS Extended Journaled, Then go to reinstall macOS and install it to the newly formatted hard drive.
+Run `./setup.sh` to make the VM. Monterey may not work, as it is very picky about hardware.
+Once the VM boots up, just hit enter even if you don't see anything (do this every boot) Then format the biggest drive as macOS Extended Journaled, go to reinstall macOS and install it to the newly formatted hard drive.
 
-Once installed, run run ./basic.sh to boot up the VM again. Do not run ./setup.sh twice if the install was succesful, as it will redownload the image and that is not needed.
+Once installed, run `./basic.sh` to boot up the VM again. Do not run `./setup.sh` twice if the install was succesful, as it will redownload the image and that is not needed.
+
+If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-mouse \` to `-usb -device usb-kbd -device usb-tablet \`
+
+If you get an error that says access denied, run `sudo ./basic.sh` which will give it admin privelages.
 
 ## You're done!
 
@@ -52,6 +56,10 @@ if you change the drive name, change the line below according to the new name in
 > Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` to the end of basic.sh for VNC support.
 
 Then run `basic.sh` to start the machine and install macOS. Remember to partition in Disk Utility first! (macOS extended journaled)
+
+If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-mouse \` to `-usb -device usb-kbd -device usb-tablet \`
+
+If you get an error that says access denied, run `sudo ./basic.sh` which will give it admin privelages.
 
 ## Step 2a (Virtual Machine Manager)
 1. If instead of QEMU, you'd like to import the setup into Virt-Manager for further configuration, just run `sudo ./make.sh --add`.
