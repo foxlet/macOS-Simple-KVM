@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VMDIR=$PWD
 OVMF=$VMDIR/firmware
@@ -28,3 +29,13 @@ qemu-system-x86_64 \
     -device ide-hd,bus=sata.3,drive=InstallMedia \
     -drive id=SystemDisk,if=none,file=macOS.qcow2 \
     -device ide-hd,bus=sata.4,drive=SystemDisk \
+
+argument="$1"
+case $argument in
+    -l|--legacy)
+    -drive id=ESP,if=none,format=qcow2,file=Clover.qcow2 \
+        ;;
+     -r|--regular)
+     -drive id=ESP,if=none,format=qcow2,file=ESP.qcow2 \
+     ;;
+esac
