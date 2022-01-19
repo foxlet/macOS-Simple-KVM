@@ -47,12 +47,12 @@ qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
 ```
 
 ## Bringing Your Own macOS bootable file
-If you want to bring your own bootable file, whether it be for an older version of macOS or you already have a file, Check if it is named BaseSystem. If not, rename it.
+If you want to bring your own bootable file, whether it be for an older version of macOS or you already have a file, drag it into the OneCLick-macOS-Simple-KVM folder. Then, Check if it is named BaseSystem. If not, rename it.
 If the file is now named BaseSystem.dmg, you must run this command to convert it to BaseSystem.img
 ```
 qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
 ```
-If it is named BaseSystem.dmg, you are good to go
+If it is named BaseSystem.img, you are good to go
 
 Hint (If using an older version of macOS, instead of running sudo `./basic.sh` run `sudo ./legacy.sh`
 
