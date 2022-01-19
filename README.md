@@ -37,14 +37,23 @@ sudo emerge -a qemu python:3.4 pip # for Gentoo
 ```
 
 ## Step 1
-Run `fetch-macOS-v2.py` to download installation media for macOS (internet required). You can also bring your own BaseSystem.dmg file and convert it. (If you are trying to run an older version of macOS, use legacy.sh instead of basic.sh.
-```
+Run `fetch-macOS-v2.py` to download installation media for macOS (internet required).
 ./fetch-macOS-v2.py
 ```
 Then run 
 ```
 qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
 ```
+
+## Bringing Your Own macOS bootable file
+If you want to bring your own bootable file, whether it be for an older version of macOS or you already have a file, Check if it is named BaseSystem. If not, rename it.
+If the file is now named BaseSystem.dmg, you must run this command to convert it to BaseSystem.img
+```
+qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
+```
+If it is named BaseSystem.dmg, you are good to go
+
+Hint (If using an older version of macOS, instead of running sudo `./basic.sh` run `sudo ./legacy.sh`
 
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
