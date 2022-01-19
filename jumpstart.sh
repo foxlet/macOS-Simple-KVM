@@ -4,6 +4,6 @@ sudo apt-get update
 
 sudo apt-get install python
 
-python fetchBigSur.py
+python fetchOSX.py
 
 
