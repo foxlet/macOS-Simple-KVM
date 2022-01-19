@@ -1,6 +1,5 @@
 # macOS-Simple-KVM
 
-This repo is updated version of macOS-Simple-KVM  [@FoxletFox](https://twitter.com/foxletfox) which enables to install newer versions of macOS like Big Sur and Monterey
 
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 
