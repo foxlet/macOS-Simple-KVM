@@ -1,5 +1,6 @@
 # macOS-Simple-KVM
 
+This repository is an updated version of macOS-Simple-KVM by Foxlet for installing Big Sur and Monterey
 
 Documentation to set up a simple macOS VM in QEMU, accelerated by KVM.
 
