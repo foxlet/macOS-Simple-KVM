@@ -15,4 +15,4 @@ elif osxver == 3:
 else:
  os.system(" python ./macrecovery.py -b Mac-E43C1C25D4880AD6 -m 00000000000000000 download")
 
- 
+ os.system("qemu-img convert BaseSystem.dmg -O raw BaseSystem.img")
