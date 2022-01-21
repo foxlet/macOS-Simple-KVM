@@ -32,12 +32,10 @@ Catalina : 2
 Big Sur : 3
 Monterey : 4
 Enter Version: 1 # for Mojave
-```
 
 
-
-```
 > Note: You can skip this if you already have `BaseSystem.img` downloaded. If you have `BaseSystem.dmg`, you will need to convert it with the `dmg2img` tool.
+```
 
 ## Step 2
 Create an empty hard disk using `qemu-img`, changing the name and size to preference:
