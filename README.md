@@ -25,7 +25,7 @@ If you get an error that says access denied, run `sudo ./basic.sh` which will gi
 
 To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
 
-## Manual method (for other distros that aren't debian based)
+## Manual method (distros that aren't debian based (don't have apt-get) require this)
 
 ## Getting Started
 You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
