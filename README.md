@@ -19,11 +19,11 @@ Once the VM boots up, just hit enter even if you don't see anything (do this eve
 
 Once installed, run `./basic.sh` to boot up the VM again. Do not run `./setup.sh` twice if the install was succesful, as it will redownload the image and that is not needed.
 
-If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-mouse \` to `-usb -device usb-kbd -device usb-tablet \`
+## You're done!
+
+If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-tablet \` to `-usb -device usb-kbd -device usb-mouse \`
 
 If you get an error that says access denied, run `sudo ./basic.sh` which will give it admin privelages.
-
-## You're done!
 
 To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
 
@@ -89,8 +89,10 @@ If you're using a cloud-based/headless system, you can use `headless.sh` to set 
 HEADLESS=1 MEM=1G CPUS=2 SYSTEM_DISK=MyDisk.qcow2 ./headless.sh
 ```
 
-## Step 3
+## You're done!
 
-You're done!
+If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-tablet \` to `-usb -device usb-kbd -device usb-mouse \`
+
+If you get an error that says access denied, run `sudo ./basic.sh` which will give it admin privelages.
 
 To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
