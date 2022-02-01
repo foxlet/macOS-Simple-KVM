@@ -1,9 +1,17 @@
 import os
 
-print("Mojave : 1")
-print("Catalina : 2")
-print("Big Sur : 3")
-print  ("Monterey : 4")
+print("Select the version of macOS you want to download")
+print("1: Lion")
+print("2: Mountain Lion")
+print("3: Mavericks")
+print("4: Yosemite")
+print("5: El Capitan")
+print("6: Sierra")
+print("7: High Sierra")
+print("8: Mojave")
+print("9: Catalina")
+print("10: Big Sur")
+print("11: Monterey")
 osxver = input("Enter Version: ")
 
 
