@@ -38,13 +38,17 @@ sudo pacman -S qemu python python3-pip python-wheel  # for Arch.
 sudo xbps-install -Su qemu python pytho3n-pip  # for Void Linux.
 sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
 sudo dnf install qemu qemu-img python python3-pip # for Fedora
-sudo emerge -a qemu python pip # for Gentoo
+sudo emerge -a qemu python:3.8 pip # for Gentoo
 ```
 
 ## Step 1
 Run `fetch-macOS.py` to download installation media for macOS (internet required).
 ```
 python fetch-macOS.py
+```
+if that command does not work, run this one
+```
+python3 fetch-macOS.py
 ```
 If the resulting file is named BaseSystem.dmg then run 
 ```
