@@ -44,9 +44,9 @@ sudo emerge -a qemu python pip # for Gentoo
 ## Step 1
 Run `fetch-macOS.py` to download installation media for macOS (internet required).
 ```
-./fetch-macOS.py
+python fetch-macOS.py
 ```
-If the resulting file is named BaseSystem.smg then run 
+If the resulting file is named BaseSystem.dmg then run 
 ```
 qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
 ```
