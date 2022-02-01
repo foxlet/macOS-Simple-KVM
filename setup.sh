@@ -6,15 +6,6 @@ qemu-img create -f qcow2 macOS.qcow2 64G
 
 python fetch-macOS.py
 
-if [ -e BaseSystem.dmg ]
-then
-    qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
-else
-    if [ -e RecoveryImage.dmg ]
-then
-    qemu-img convert RecoveryImage.dmg -O raw BaseSystem.img
-else
-    echo "macOS installer not found"
-fi
+(ls RecoveryImage.dmg >> /dev/null 2>&1 && mv RecoveryImage.dmg BaseSystem.dmg) || echo ""
 
 sudo ./basic.sh
