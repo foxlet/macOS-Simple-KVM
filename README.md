@@ -33,12 +33,12 @@ To fine-tune the system and improve performance, look in the `docs` folder for m
 You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
 
 ```
-sudo apt-get install qemu-system qemu-utils python3 python3-pip  # for Ubuntu, Debian, Mint, and PopOS.
+sudo apt-get install qemu-system qemu-utils python python-pip  # for Ubuntu, Debian, Mint, and PopOS.
 sudo pacman -S qemu python python-pip python-wheel  # for Arch.
-sudo xbps-install -Su qemu python3 python3-pip   # for Void Linux.
-sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
-sudo dnf install qemu qemu-img python3 python3-pip # for Fedora
-sudo emerge -a qemu python:3.4 pip # for Gentoo
+sudo xbps-install -Su qemu python python-pip  # for Void Linux.
+sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python-pip  # for openSUSE Tumbleweed
+sudo dnf install qemu qemu-img python python-pip # for Fedora
+sudo emerge -a qemu python pip # for Gentoo
 ```
 
 ## Step 1
