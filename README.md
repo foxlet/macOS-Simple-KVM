@@ -34,10 +34,10 @@ You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the 
 
 ```
 sudo apt-get install qemu-system qemu-utils python python-pip  # for Ubuntu, Debian, Mint, and PopOS.
-sudo pacman -S qemu python python-pip python-wheel  # for Arch.
-sudo xbps-install -Su qemu python python-pip  # for Void Linux.
-sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python-pip  # for openSUSE Tumbleweed
-sudo dnf install qemu qemu-img python python-pip # for Fedora
+sudo pacman -S qemu python python3-pip python-wheel  # for Arch.
+sudo xbps-install -Su qemu python pytho3n-pip  # for Void Linux.
+sudo zypper in qemu-tools qemu-kvm qemu-x86 qemu-audio-pa python3-pip  # for openSUSE Tumbleweed
+sudo dnf install qemu qemu-img python python3-pip # for Fedora
 sudo emerge -a qemu python pip # for Gentoo
 ```
 
