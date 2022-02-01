@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import subprocess
 
 print("Select the version of macOS you want to download")
 print("1: Lion")
