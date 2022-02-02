@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 
 print("Select the version of macOS you want to download")
