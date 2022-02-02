@@ -46,14 +46,11 @@ Run `fetch-macOS.py` to download installation media for macOS (internet required
 ```
 ./fetch-macOS-v2.py
 ```
-If the resulting file is named BaseSystem.dmg then run 
+Then run
 ```
 qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
 ```
-If it is named RecoveryImage.dmg run
-```
-qemu-img convert RecoveryImage.dmg -O raw BaseSystem.img
-```
+If BaseSystem.dmg is not found, check to make sure macOS downloaded correctly
 
 ## Bringing Your Own macOS bootable file
 If you want to bring your own bootable file, whether it be for an older version of macOS or you already have a file, drag it into the OneCLick-macOS-Simple-KVM folder. Then, Check if it is named BaseSystem. If not, rename it.
