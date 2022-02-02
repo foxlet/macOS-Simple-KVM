@@ -12,6 +12,10 @@ New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 ## IMPORTANT
 You must download or clone this GitHub repository before you begin
 Do not use forks of `notAperson535/OneClick-macOS-Simple-KVM` as I update this repository a lot, and forks are usually behind.
+If you want to update your version, which I recommend doing at least one a month, run this command
+```
+git pull --rebase
+```
 
 ## OneClick Method
 Run `./setup.sh` to make the VM. Monterey may not work, as it is very picky about hardware.
