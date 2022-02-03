@@ -1,7 +1,5 @@
 ## How to increase screen resolution for macOS-Simple-KVM
 
-_(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-tutorial-part-1-the-basics/) and [urcomputertechnics.com](http://urcomputertechnics.com/how-to-mount-efi-partition-on-macos-mojave/) for the tips.)_
-
 1. In the macOS Finder, look for **EFI** in the left bar under **Volumes**. If it isn't visible you will have to mount it:
  - Open the macOS Terminal and type `diskutil list` and look for the disk/partition location of the EFI. (There may be more than one.)
  - Type `sudo diskutil mount diskYsZ`, using the disk/partition location name where you see EFI.
@@ -20,6 +18,7 @@ _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-
 
 2. Shut down the VM, relaunch it using `basic.sh` script and follow the following steps:
  - Press `Escape` key as soon as the window comes up.
+ - If you are using virt-manager, you may need to detach the USB keyboard to get to this screen. One you are done editing, re-add the USB keyboard and reboot
  - In the interface that comes up, select `Device Manager`->`OVMF Platform Configuration`->`Change Preferred` and select the correct resolution.
  - Press `F10` to save the changes.
  - Press `Escape` multiple times to come back to main menu, and then select `Continue` on it.
