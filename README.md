@@ -20,7 +20,7 @@ git pull --rebase
 
 ## OneClick Method
 `setup.sh` is for Debian based Linux Repositories like Ubuntu and `setupArch.sh` is for Arch based Linux Repositories like Manjaro. Run `./setup.sh` or `./setupArch.sh` depending on your Linux OS to make the VM. Monterey may not work, as it is very picky about hardware.
-Once the VM boots up, just hit enter even if you don't see anything (do this every boot) Then format the biggest drive as macOS Extended Journaled (should be a little bigger than 64GB, then go to reinstall macOS and install it to the newly formatted drive.
+Once the VM boots up, just hit enter even if it's a black screen or a cut off image (do this every boot) Then format the biggest drive as macOS Extended Journaled (should be a little bigger than 64GB, then go to reinstall macOS and install it to the newly formatted drive.
 
 Once installed, run `./basic.sh` to boot up the VM again. Do not run `./setup.sh` twice if the install was succesful, as it will redownload the image and that is not needed.
 
