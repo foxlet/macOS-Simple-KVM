@@ -78,7 +78,7 @@ qemu-img create -f qcow2 macOS.qcow2 64G
 
 if you change the drive name, change the line below according to the new name in `basic.sh`:
 ```
-    -drive id=SystemDisk,if=none,file=macOS.qcow2 \
+    -drive id=SystemDisk,if=none,file="$VMDIR/macOS.qcow2" \
 ```
 > Note: If you're running on a headless system (such as on Cloud providers), you will need `-nographic` and `-vnc :0 -k en-us` to the end of basic.sh for VNC support.
 
