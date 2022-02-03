@@ -7,11 +7,11 @@ _(Thanks to [passthroughpo.st](https://passthroughpo.st/new-and-improved-mac-os-
  - Type `sudo diskutil mount diskYsZ`, using the disk/partition location name where you see EFI.
  - The **EFI** partition will appear in the left Finder bar under **Volumes**.
  - If you don't see anything in that volume after browsing to it, try the other ones that you found in `diskutil`.
-2. In the **EFI** volume, go into the `Clover` directory and open the `config.plist` file in the macOS text editor.
+2. In the **EFI** volume, go into the `OC` directory and open the `config.plist` file in the macOS text editor.
 3. There should be a section of the file that looks like this:
 
 ```````````````````
-<key>ScreenResolution</key>
+<key>Resolution</key>
 <string>1280x720</string>
 ```````````````````
 
