@@ -2,7 +2,7 @@
 
 
 OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
-VMDIR=$PWD
+VMDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 OVMF=$VMDIR/firmware
 #export QEMU_AUDIO_DRV=pa
 #QEMU_AUDIO_DRV=pa
@@ -23,9 +23,9 @@ qemu-system-x86_64 \
     -netdev user,id=net0 \
     -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
     -device ich9-ahci,id=sata \
-    -drive id=ESP,if=none,format=qcow2,file=ESP.qcow2 \
+    -drive id=ESP,if=none,format=qcow2,file=$VMDIR/ESP.qcow2 \
     -device ide-hd,bus=sata.2,drive=ESP \
-    -drive id=InstallMedia,format=raw,if=none,file=BaseSystem.img \
+    -drive id=InstallMedia,format=raw,if=none,file=$VMDIR/BaseSystem.img \
     -device ide-hd,bus=sata.3,drive=InstallMedia \
-    -drive id=SystemDisk,if=none,file=macOS.qcow2 \
+    -drive id=SystemDisk,if=none,file=$VMDIR/macOS.qcow2 \
     -device ide-hd,bus=sata.4,drive=SystemDisk \
