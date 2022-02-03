@@ -47,7 +47,7 @@ sudo eopkg install qemu # for Solus OS
 sudo emerge -a qemu python:3.8 dev-python/pip # for Gentoo
 ```
 
-If you are installing on Solus OS, extraction qemu may take a while, so be patient.
+If you are installing on Solus OS, extracting qemu may take a while, so be patient.
 
 ## Step 1
 Run `fetch-macOS.py` to download installation media for macOS (internet required).
