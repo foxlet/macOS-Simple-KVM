@@ -10,10 +10,10 @@
 
 ```````````````````
 <key>Resolution</key>
-<string>1280x720</string>
+<string>1280x720@32</string>
 ```````````````````
 
- - Edit that to your preferred screen resolution.
+ - Edit that to your preferred screen resolution, but leave the @32 part as it is.
  - Some odd/intermediate resolutions like 1366×768 may not work well. Try to stick to more common 16:9, 16:10, and 4:3 form factors.
 
 2. Shut down the VM, relaunch it using `basic.sh` script and follow the following steps:
