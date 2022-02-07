@@ -9,35 +9,6 @@ I did not make the download script, Kholia did.
 
 New to macOS and KVM? Check [the FAQs.](docs/FAQs.md)
 
-## IMPORTANT
-You must download or clone this GitHub repository before you begin
-Do not use forks of `notAperson535/OneClick-macOS-Simple-KVM` as I update this repository a lot, and forks are usually behind.
-This is NOT the install guide for Windows, that is located [here](windows-install.md)
-
-If you want to update your version, which I recommend doing at least one a month, run this command
-```
-git pull --rebase
-```
-
-## OneClick Method
-- `setup.sh` is for Debian based Linux Repositories like Ubuntu
-- `setupArch.sh` is for Arch based Linux Repositories like Manjaro.
-
-Run `./setup.sh` or `./setupArch.sh` depending on your Linux OS to make the VM. Monterey may not work, as it is very picky about hardware.
-Once the VM boots up, just hit enter even if it's a black screen or a cut off image (do this every boot) Then format the biggest drive as macOS Extended Journaled (should be a little bigger than 64GB, then go to reinstall macOS and install it to the newly formatted drive.
-
-Once installed, run `./basic.sh` to boot up the VM again. Do not run `./setup.sh` twice if the install was succesful, as it will redownload the image and that is not needed.
-
-## You're done!
-
-If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-tablet \` to `-usb -device usb-kbd -device usb-mouse \` or the other way around
-
-If you get an error that says access denied, run `sudo ./basic.sh` which will give it admin privelages.
-
-To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
-
-## Manual method (distros that aren't debian based (don't have apt-get) require this)
-
 ## Getting Started
 You'll need a Linux system with `qemu` (3.1 or later), `python3`, `pip` and the KVM modules enabled. A Mac is **not** required. Some examples for different distributions:
 
