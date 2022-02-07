@@ -57,10 +57,35 @@ Now cd into the OneClick-macOS-Simple-KVM directory, replacing the WINDOWS_USER_
 ```
 cd /mnt/c/users/WINDOWS_USER_NAME/Documents/OneClick-macOS-Simple-KVM
 ```
-And run `./setup.sh` to finish the setup and run the macOS VM! When it finishes, it might say acces denied. If it does, run `sudo ./basic.sh`
+And run `./setup.sh` to finish the setup and run the macOS VM!
+
+Whenever you want to load up the machine again, run `sudo ./basic.sh` NOT `./setup.sh` as setup.sh will reset all of your progress, and you will have to reinstall macOS.
 
 ## You're done!
 
 If the mouse is not aligned properly, edit the basic.sh file and change `-usb -device usb-kbd -device usb-tablet \` to `-usb -device usb-kbd -device usb-mouse \` or the other way around
 
+Never close the terminal when the QEMU window is open
+
 To fine-tune the system and improve performance, look in the `docs` folder for more information on [adding memory](docs/guide-performance.md), setting up [bridged networking](docs/guide-networking.md)(probably does not work and is not needed), adding [passthrough hardware (for GPUs)](docs/guide-passthrough.md)(this doesn't work on WSL2 yet), tweaking [screen resolution](docs/guide-screen-resolution.md), and enabling sound features.
+
+## Troubleshooting
+
+### Terminal Doesn't Respond
+
+If the terminal stops responding when you run `sudo ./basic.sh`, then follow these steps
+
+Uninstall Ubuntu by going to the app in settings and selecting uninstall. Once that is done, go to the Microsoft Store, search Ubuntu, and install it. Once the installation is done, open it, make a new username and password, and repeat the steps in Step 3, but instead of running `./setup.sh` run `sudo ./basic.sh`
+
+Do this every time this happens
+
+### cat /sys/module/kvm_intel/parameters/nested returns `N`, but KVM-OK Returns `KVM acceleration can be used`
+
+Edit these commands in .wslconfig, which is located in your Windows user direcotry, replacing the WINDOWS_USER_NAME with the your Windows username, not the Linux one.
+```
+nestedVirtualization=true
+kernel=C:\\Users\\WINDOWS_USER_NAME\\bzImage
+debugConsole=true
+pageReporting=true
+kernelCommandLine=intel_iommu=on iommu=pt kvm.ignore_msrs=1 kvm-intel.nested=1 kvm-intel.ept=1 kvm-intel.emulate_invalid_guest_state=0 kvm-intel.enable_shadow_vmcs=1 kvm-intel.enable_apicv=1
+```
