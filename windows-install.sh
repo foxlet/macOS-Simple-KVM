@@ -8,7 +8,5 @@ tar -xf WSL2-Linux-Kernel-4.19.104-microsoft-standard.tar.gz
 cd WSL2-Linux-Kernel-4.19.104-microsoft-standard/
 cp Microsoft/config-wsl .config
 make menuconfig
-kvm-ok
-cat /sys/module/kvm_intel/parameters/nested
 cd ~
 nano .bashrc
