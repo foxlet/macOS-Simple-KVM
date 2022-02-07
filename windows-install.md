@@ -57,4 +57,4 @@ now cd into the OneClick-macOS-Simple-KVM directory, replacing the WINDOWS_USER_
 ```
 cd /mnt/c/users/WINDOWS_USER_NAME/Documents/OneClick-macOS-Simple-KVM
 ```
-And run setup.sh to finish the setup and run the macOS VM!
+And run `./setup.sh` to finish the setup and run the macOS VM! When it finishes, it might say acces denied. If it does, run `sudo ./basic.sh`
