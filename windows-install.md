@@ -40,7 +40,7 @@ Go to Virtualization and make sure your system processor type is selected, mine 
 ![image](https://user-images.githubusercontent.com/95918679/152704984-213b067b-1a8e-45cf-ad23-330391c31583.png)
 Then keep clicking exit, and save the configuration
 
-Once when you see the nano windows pop up, use the arrow keys to navigate to the bottom and paste this command
+Once when you see the nano window pop up (it looks like a window with a lot of text), use the arrow keys to navigate to the bottom and paste this command
 ```
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 ```
@@ -53,7 +53,7 @@ cat /sys/module/kvm_intel/parameters/nested
 ```
 If the first command returns `KVM acceleration can be used` and the second command returns `Y`, then you are good to go
 
-now cd into the OneClick-macOS-Simple-KVM directory, replacing the WINDOWS_USER_NAME with the your Windows username, not the Linux one.
+Now cd into the OneClick-macOS-Simple-KVM directory, replacing the WINDOWS_USER_NAME with the your Windows username, not the Linux one.
 ```
 cd /mnt/c/users/WINDOWS_USER_NAME/Documents/OneClick-macOS-Simple-KVM
 ```
