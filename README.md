@@ -18,7 +18,7 @@ sudo emerge -a qemu python:3.4 pip # for Gentoo
 ```
 
 ## Step 1
-Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example:
+Run `jumpstart.sh` to download installation media for macOS (internet required). The default installation uses Catalina, but you can choose which version to get by adding either `--high-sierra`, `--mojave`, or `--catalina`. For example: You can also change the branch to big sur and use `--big-sur`. 
 ```
 ./jumpstart.sh --mojave
 ```
