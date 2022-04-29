@@ -10,4 +10,4 @@ A: The jumpstart download is ~500MB compressed (2GB uncompressed), the installat
 A: If the cloud provider supports nested KVM as well as the necessary CPU instructions, yes.
    In some cases only certain tiers will work as the CPU need to be supported.
    
-   For DigitalOcean, this means a `General Purpose` or `CPU Optimized` machine is required. `Ubuntu 19.04` or newer is recommended.
+   For DigitalOcean, this means a `Basic`,`General Purpose` or `CPU Optimized` machine is required. `Ubuntu 19.04` or newer is recommended.
