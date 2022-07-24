@@ -6,7 +6,7 @@ OVMF=$VMDIR/firmware
 #export QEMU_AUDIO_DRV=pa
 #QEMU_AUDIO_DRV=pa
 
-qemu-system-x86_64 \
+args=(
     -enable-kvm \
     -m 2G \
     -machine q35,accel=kvm \
@@ -26,3 +26,9 @@ qemu-system-x86_64 \
     -device ide-hd,bus=sata.2,drive=ESP \
     -drive id=InstallMedia,format=raw,if=none,file=BaseSystem.img \
     -device ide-hd,bus=sata.3,drive=InstallMedia \
+    ### add device/file that you have installed macos on
+    #-drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
+    #-device ide-hd,bus=sata.4,drive=SystemDisk \
+)
+
+qemu-system-x86_64 "${args[@]}"
