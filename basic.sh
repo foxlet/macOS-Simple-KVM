@@ -8,7 +8,7 @@ OVMF=$VMDIR/firmware
 
 qemu-system-x86_64 \
     -enable-kvm \
-    -m 2G \
+    -m 12G \
     -machine q35,accel=kvm \
     -smp 4,cores=2 \
     -cpu Penryn,vendor=GenuineIntel,kvm=on,+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc \
@@ -18,7 +18,7 @@ qemu-system-x86_64 \
     -drive if=pflash,format=raw,file="$OVMF/OVMF_VARS-1024x768.fd" \
     -vga qxl \
     -device ich9-intel-hda -device hda-output \
-    -usb -device usb-kbd -device usb-mouse \
+    -usb -device usb-kbd -device usb-tablet \
     -netdev user,id=net0 \
     -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
     -device ich9-ahci,id=sata \
